@@ -1,0 +1,177 @@
+.ticket {
+  padding: 20px;
+  border-radius: 8px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  background: var(--color-bg-elevated, #f4f4f5);
+  box-shadow: 0px 2px 4px -2px rgba(16, 24, 40, 0.1),
+    0px 4px 6px -1px rgba(0, 0, 0, 0.1);
+  .ticketTitle {
+    display: flex;
+    justify-content: space-between;
+    .ticketTitleL {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      span {
+        color: #2e2c34;
+        font-family: Montserrat;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 14px;
+      }
+    }
+    .ticketTitleR {
+      span {
+        color: #84818a;
+        font-family: Montserrat;
+        font-size: 12px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px;
+      }
+    }
+  }
+  .ticketContent {
+    margin-top: 16px;
+    .ticketContentTitle {
+      margin-bottom: 12px;
+      span {
+        margin-right: 12px;
+        color: var(--color-text, #09090b);
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px;
+      }
+    }
+    .ticketContentComment {
+      color: #84818a;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 18px;
+    }
+    hr {
+      margin: 16px 0 16px 0;
+      width: 100%;
+      background: #e7e7e7;
+    }
+    .ticketFile {
+      width: 118px;
+      display: flex;
+      padding: 4px 8px;
+      align-items: center;
+      gap: 12px;
+      border-radius: 4px;
+      background: #eef9ac;
+      span {
+        color: #2e2c34;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 14px;
+      }
+    }
+    .ticketWhoseTT {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .ticketWhose {
+        margin-top: 16px;
+        display: flex;
+        align-items: center;
+        img {
+          margin-right: 7px;
+        }
+        span {
+          color: var(--color-text, #09090b);
+          font-family: Inter;
+          font-size: 16px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 24px;
+          margin-right: 24px;
+        }
+        h3 {
+          display: flex;
+          padding: var(--spacing-spacing-2-xs, 4px)
+            var(--spacing-spacing-md, 12px);
+          justify-content: center;
+          align-items: center;
+          gap: 10px;
+          border-radius: var(--radii-radius-sm, 4px);
+          background: var(--color-bg, #fff);
+          box-shadow: 0px 1px 3px 0px rgba(16, 24, 40, 0.1),
+            0px 1px 2px -1px rgba(0, 0, 0, 0.1);
+          color: var(--color-text, #09090b);
+          font-family: Inter;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 20px;
+          margin-left: 24px;
+        }
+      }
+      h5 {
+        cursor: pointer;
+        color: var(--color-text, #09090b);
+
+        /* text-sm/font-medium */
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 20px; /* 142.857% */
+      }
+    }
+  }
+}
+
+
+.SecondTicketFilter {
+  margin-bottom: 24px;
+}
+
+.ticketdetailsHomeTT {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  padding: 203px 210px 202px 220px;
+  .ticketDetailsHome {
+    background-color: #fff;
+    border-color: #fff;
+    border-radius: 8px;
+    z-index: 100;
+    display: flex;
+    width: 1087px;
+    height: 650px;
+    padding: 20px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    flex-shrink: 0;
+    align-self: stretch;
+  }
+}
+
+.ticketImg {
+  width: 32px;
+  height: 32px;
+}
+
+.checkBoxTT{
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  .checkBoxLabel{
+    margin-left: 8px;
+  }
+}

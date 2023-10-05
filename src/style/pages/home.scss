@@ -1,0 +1,267 @@
+.tickets {
+  margin-left: 260px;
+  background-color: #f3fcfe;
+  padding: 24px 3px 8px 24px;
+  display: flex;
+  .ticketsContent {
+    background-color: #fff;
+    padding: 32px;
+    border-radius: 12px;
+    background: #fff;
+    .salamTT {
+      display: flex;
+      justify-content: space-between;
+      .ticketsTitle {
+        display: flex;
+        width: 100%;
+        margin-bottom: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        h1 {
+          color: var(--color-text, #09090b);
+          font-family: Inter;
+          font-size: 24px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 38px;
+        }
+      }
+    }
+    .ticketFilter {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+      // .date {
+      //   background-image: url("../bg-images/arrow-down.png");
+      //   background-position: 120px 10px;
+      //   background-repeat: no-repeat;
+      //   background-size: 18px;
+      //   display: flex;
+      //   width: 152px;
+      //   padding: 12px 16px;
+      //   align-items: center;
+      //   gap: 12px;
+      //   border-radius: 4px;
+      //   border: 1px solid #e7e7e7;
+      //   color: #84818a;
+      //   font-family: Montserrat;
+      //   font-size: 12px;
+      //   font-style: normal;
+      //   font-weight: 500;
+      //   line-height: 16px;
+      // }
+    }
+    .ticketsArea {
+      height: 689px;
+      overflow: auto;
+    }
+  }
+}
+.pinIcon {
+  width: 24px;
+  height: 24px;
+  border-radius: 21px;
+  border: 1px solid #20bedb;
+  background: #5697b7;
+}
+
+.home {
+  position: relative;
+  .newTicket {
+    width: 406px;
+    height: 916px;
+    padding: 20px 20px 72px 20px;
+    margin-left: 24px;
+    border-radius: 4px;
+    background: #fff;
+    .newTicketTitle {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .newTicketR {
+        display: flex;
+        align-items: center;
+        span {
+          margin-left: 12px;
+          color: var(--color-text, #09090b);
+          font-family: Inter;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 600;
+          line-height: 30px; /* 166.667% */
+        }
+      }
+    }
+    .newTicketDate {
+      margin-bottom: 15px;
+      display: flex;
+      margin-top: 4px;
+      width: 300px;
+      height: 28px;
+      align-items: center;
+      span {
+        color: var(--color-icon-muted, #71717a);
+        font-family: Inter;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 300;
+        line-height: 20px;
+      }
+    }
+    .newTicketHR {
+      width: 368px;
+      height: 1px;
+      background: var(--color-border, #e4e4e7);
+      margin-bottom: 25px;
+    }
+    .newTicketInpBox {
+      margin-bottom: 16px;
+      input {
+        display: flex;
+        width: 366px;
+        height: 50px;
+        padding: 16px 20px;
+        align-items: center;
+        gap: 10px;
+        border-radius: 4px;
+        border: 1px solid #e7e7e7;
+        outline: #e7e7e7;
+      }
+      input::placeholder {
+        color: #757575;
+        font-family: Montserrat;
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: normal;
+        letter-spacing: -0.28px;
+      }
+    }
+    .newTicketTwoInp {
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-start;
+      gap: 16px;
+      align-self: stretch;
+      .inpL {
+        span {
+          display: flex;
+          height: 16px;
+          flex-direction: column;
+          justify-content: center;
+          align-self: stretch;
+          color: #2e2a40;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+        input {
+          display: flex;
+          height: 50px;
+          width: 175px;
+          padding: 16px 20px;
+          outline: #e7e7e7;
+
+          align-items: center;
+          gap: 63px;
+          align-self: stretch;
+          border-radius: 4px;
+          border: 1px solid #e7e7e7;
+          margin-top: 10px;
+        }
+      }
+    }
+    .newTicketSelect {
+      margin-top: 16px;
+      margin-bottom: 16px;
+      select {
+        border-radius: 4px;
+        border: 1px solid #e7e7e7;
+        display: flex;
+        width: 366px;
+        height: 50px;
+        padding: 16px 20px;
+        align-items: center;
+        outline: #e7e7e7;
+        gap: 63px;
+      }
+    }
+    .newTicketComment {
+      input {
+        display: flex;
+        width: 366px;
+        height: 91px;
+        padding: 16px 20px;
+        align-items: flex-start;
+        gap: 10px;
+        border-radius: 4px;
+        border: 1px solid #e7e7e7;
+        outline: #e7e7e7;
+      }
+    }
+    .newTicketAddFileTT {
+      display: flex;
+      justify-content: flex-end;
+      .newTicketAddFile {
+        width: 100px;
+        margin-top: 16px;
+        display: flex;
+        align-items: flex-end;
+        border-radius: 4px;
+        background: #eef9ac;
+        padding: 4px 8px;
+        align-items: center;
+        gap: 12px;
+        span {
+          color: #2e2c34;
+          font-family: Montserrat;
+          font-size: 14px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 14px;
+        }
+      }
+    }
+
+    .newTicketSendBtn {
+      margin-top: 42px;
+      color: #fff;
+      text-align: center;
+      font-family: Montserrat;
+      font-size: 16px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 150%;
+      letter-spacing: -0.32px;
+      display: flex;
+      width: 366px;
+      height: 60px;
+      padding: 13px 24px;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      border-radius: 4px;
+      border: none;
+      background: #5697b7;
+    }
+  }
+}
+
+.closeIcon {
+  cursor: pointer;
+}
+
+.newTicketText {
+  color: var(--color-text-onColor, #fff);
+  font-family: Inter;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 20px;
+  margin-left: 8px;
+}

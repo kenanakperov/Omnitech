@@ -1,0 +1,37 @@
+.taskHistoryCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 345px;
+  .taskHistoryCardL {
+    display: flex;
+    align-items: center;
+    span {
+      color: #84818a;
+      font-family: Montserrat;
+      font-size: 14px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 14px;
+      margin-left: 8px;
+      margin-right: 12px;
+    }
+    p {
+      color: #5c5c5c;
+      font-family: Montserrat;
+      font-size: 12px;
+      font-style: normal;
+      font-weight: 500;
+      line-height: 20px;
+    }
+  }
+  h4 {
+    color: #84818a;
+    text-align: right;
+    font-family: Montserrat;
+    font-size: 12px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: 14px;
+  }
+}

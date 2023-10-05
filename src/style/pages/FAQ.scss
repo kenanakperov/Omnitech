@@ -1,0 +1,49 @@
+.faqTT {
+  padding: 24px 24px 37px 24px;
+  background: #fafafa;
+  margin-left: 260px;
+  .faq {
+    border-radius: 12px;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    width: 1180px;
+    padding: 48px 24px;
+    gap: 8px;
+    flex-shrink: 0;
+    .faqTitle {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+      align-items: center;
+      h2 {
+        color: #2e2c34;
+        font-family: Montserrat;
+        font-size: 24px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+      }
+      .searchInp {
+        input {
+          background-image: url("../bg-images/search-normal.png");
+          background-position: 10px 10px;
+          background-repeat: no-repeat;
+          background-size: 18px;
+          display: flex;
+          padding: 12px 40px;
+          align-items: center;
+          gap: 12px;
+          border-radius: 4px;
+          border: 1px solid #e7e7e7;
+          color: #b6b6b6;
+          font-family: Montserrat;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: normal;
+        }
+      }
+    }
+  }
+}

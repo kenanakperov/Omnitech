@@ -1,0 +1,33 @@
+// ? Base
+
+@import url(./base/base.scss);
+
+// ? Component
+
+@import url(./component/sideBar.scss);
+@import url(./component/topBar.scss);
+@import url(./component/tab.scss);
+@import url(./component/ticket.scss);
+@import url(./component/longLabel.scss);
+@import url(./component/phoneNumberInput.scss);
+@import url(./component/ticketDetails.scss);
+@import url(./component/taskHistoryChanger.scss);
+@import url(./component/faqCard.scss);
+
+// ? Pages
+
+@import url(./pages/home.scss);
+@import url(./pages/reports.scss);
+@import url(./pages/FAQ.scss);
+@import url(./pages/users.scss);
+@import url(./pages/login.scss);
+
+
+
+// ? Fonts
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@500&display=swap');
+
+.false {
+  display: none;
+}

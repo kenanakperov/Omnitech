@@ -1,0 +1,62 @@
+.faqCard {
+  display: flex;
+  padding: 40px 32px;
+  align-items: flex-start;
+  gap: 24px;
+  align-self: stretch;
+  .faqCardNum {
+    color: var(--text-txt-tertiary, rgba(60, 60, 67, 0.5));
+    font-family: Montserrat;
+    font-size: 28px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+  }
+  .faqCardContent {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 26px;
+    flex: 1 0 0;
+    h2 {
+      color: var(--text-txt-primary, #000);
+      font-family: Montserrat;
+      font-size: 24px;
+      font-style: normal;
+      font-weight: 700;
+      line-height: 120%;
+      align-self: stretch;
+    }
+    span {
+      align-self: stretch;
+      color: var(--text-txt-secondary, rgba(60, 60, 67, 0.85));
+      font-family: Montserrat;
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 140%;
+    }
+  }
+  .faqCardBtn {
+    cursor: pointer;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 24px;
+    background: var(--background-bg-secondary, #f3f5f6);
+  }
+  .faqCardBtnSecond {
+    cursor: pointer;
+    display: flex;
+    width: 40px;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    border-radius: 24px;
+    background: var(--icon-i-primary, #000);
+  }
+}
