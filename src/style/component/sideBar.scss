@@ -24,8 +24,8 @@
   .sideBarUl {
     display: flex;
     flex-direction: column;
-    li {
-      a {
+    a {
+      li {
         padding: 16px 32px;
         cursor: pointer;
         display: flex;

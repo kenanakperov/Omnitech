@@ -1,12 +1,19 @@
 import React, { useState } from "react";
-import LongLabel from "./LongLabel";
+import {
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "../components/ui/select";
 import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Textarea } from "../components/ui/textarea";
 import {
   ArrowDown,
   Close,
   Pen,
-  Verified,
-  WhiteRightArrow,
   BlueCircle,
   RightArrow,
   GreenCircle,
@@ -14,19 +21,36 @@ import {
 } from "../svg";
 
 import TaskHistoryChanger from "./TaskHistoryChanger";
+import { Label } from "../components/ui/label";
+import { Button } from "../components/ui/button";
 
 const Ticket = (circle) => {
   const [hideDetails, setHideDetails] = useState("false");
-  const [rightArrowHide, setRightArrowHide] = useState("");
-  const [textSender, setTextSender] = useState("false");
-  const [textSenderTT, setTextSenderTT] = useState("false");
-  const [whose, setWhose] = useState("");
-  const [whoseTextLast, setWhoseTextLast] = useState("false");
   const [activeFirst, setActiveFirst] = useState("active");
   const [activeSecond, setActiveSecond] = useState("nonactive");
   const [historyCommentChanger, setHistoryCommentChanger] = useState("");
   const [changeTaskHistory, setChangeTaskHistory] = useState("false");
+  const [rightArrow, setRightArrow] = useState("false");
+  const [arrowhide, setArrowHide] = useState("");
+  const [selectValue, setSelectValue] = useState("");
+  const [toMe, setToMe] = useState("Mənə təyin et");
 
+
+  const inputHide = () => {
+    if (rightArrow === "false") {
+      setRightArrow("true");
+      setArrowHide("false");
+    } else {
+      setRightArrow("false");
+      setArrowHide("");
+    }
+  };
+  const handleChange = (value) => {
+    setSelectValue(value.charAt(0).toUpperCase() + value.slice(1));
+    setRightArrow("false");
+    setArrowHide("");
+    setToMe("")
+  };
   const activeNonActive = () => {
     if (activeFirst === "active") {
       setActiveFirst("nonactive");
@@ -41,15 +65,6 @@ const Ticket = (circle) => {
     }
   };
 
-  const rightArrowBtn = () => {
-    if (rightArrowHide === "") {
-      setRightArrowHide("false");
-      setTextSender("whoseTextSender");
-      setTextSenderTT("whoseTextSenderTT");
-    } else {
-      setRightArrowHide("");
-    }
-  };
   const details = () => {
     if (hideDetails === "false") {
       setHideDetails("ticketdetailsHomeTT");
@@ -57,34 +72,6 @@ const Ticket = (circle) => {
       setHideDetails("false");
     }
   };
-  const hideTextSender = () => {
-    if (textSender === "false") {
-      setTextSender("whoseTextSender");
-    }
-  };
-
-  const senderPerson1 = () => {
-    setWhose("Dima");
-    setTextSender("false");
-    setTextSenderTT("false");
-    setWhoseTextLast("whoseTextLast");
-  };
-
-  const senderPerson2 = () => {
-    setWhose("Kenan");
-    setTextSender("false");
-    setTextSenderTT("false");
-    setWhoseTextLast("whoseTextLast");
-  };
-
-  const hideTextSenderTT = () => {
-    if (textSenderTT === "false") {
-      setTextSenderTT("whoseTextSender");
-    } else {
-      setTextSenderTT("false");
-    }
-  };
-
   let circleColor;
   if (circle.circle === "blue") {
     circleColor = <BlueCircle />;
@@ -194,7 +181,7 @@ const Ticket = (circle) => {
                   <div className={historyCommentChanger}>
                     <div className="detailsContentRWhoseDate">
                       <div className="detailsContentRWhose">
-                        <img src={require("../images/People.png")} alt="" />
+                        <img src={require("../images/Avatarmen.png")} alt="" />
                         <span>Vlad</span>
                       </div>
                       <span>01/09/23 - 12:45</span>
@@ -208,8 +195,11 @@ const Ticket = (circle) => {
                       </span>
                     </div>
                     <div className="detailsContentAddComment">
-                      <LongLabel text="Şərh əlavə et" />
-                      <input type="text" placeholder="Şərh yazın.." />
+                      <Label htmlFor="terms">Şərh əlavə et</Label>
+                      <Textarea
+                        className="resize-none mt-1"
+                        placeholder="Şərh yazın.."
+                      />
                     </div>
                   </div>
                   <div className={changeTaskHistory}>
@@ -248,48 +238,31 @@ const Ticket = (circle) => {
                     </TabsList>
                   </Tabs>{" "}
                   <img src={require("../images/Avatarmen.png")} alt="" />
-                  <h4>Mənə təyin et</h4>
-                  <div onClick={rightArrowBtn} className={rightArrowHide}>
-                    <h5>
+                  <h4>{toMe}</h4>
+                  <span>{selectValue}</span>
+                  <div>
+                    <h5 className={arrowhide} onClick={inputHide}>
                       <RightArrow />
                     </h5>
                   </div>
-                  <div onClick={hideTextSender} className={textSender}>
-                    <span>Di</span>
+                  <div className={rightArrow}>
+                    <Select onValueChange={(e) => handleChange(e)}>
+                      <SelectTrigger className="w-[241px]">
+                        <SelectValue placeholder="Yönləndirin" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Yönləndirin</SelectLabel>
+                          <SelectItem value="texniki">Texniki</SelectItem>
+                          <SelectItem value="yığım">Yığım</SelectItem>
+                          <SelectItem value="satış">Satış</SelectItem>
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
                   </div>
-                  <div className={whoseTextLast}>
-                    <h6>
-                      <RightArrow />
-                    </h6>
-                    <img src={require("../images/People.png")} alt="people" />
-                    <span>{whose}</span>
-                    <h2>
-                      <WhiteRightArrow />
-                    </h2>
-                  </div>
-                  <div className={textSenderTT}>
-                    <div
-                      onClick={hideTextSenderTT}
-                      className="whoseTextSenderHead"
-                    >
-                      <span>Satış</span>
-                      <Verified />
-                    </div>
-                    <div
-                      onClick={senderPerson1}
-                      className="whoseTextSenderPerson"
-                    >
-                      <img src={require("../images/People.png")} alt="" />
-                      <span>Dima</span>
-                    </div>
-                    <div
-                      onClick={senderPerson2}
-                      className="whoseTextSenderPerson"
-                    >
-                      <img src={require("../images/People.png")} alt="" />
-                      <span>Kenan</span>
-                    </div>
-                  </div>
+                </div>
+                <div onClick={details}>
+                  <Button>Yadda saxla</Button>
                 </div>
               </div>
             </div>

@@ -1,5 +1,5 @@
 import React from "react";
-import { DocumentText, MessageQuestion,  TaskSquare } from "../svg";
+import { DocumentText, MessageQuestion, TaskSquare } from "../svg";
 import { Link } from "react-router-dom";
 
 const Header = () => {
@@ -9,39 +9,30 @@ const Header = () => {
         <div className="sideBarLogoImg"></div>
       </div>
       <ul className="sideBarUl">
-        <li>
-          <Link to={"/home"}>
+        <Link to={"/home"}>
+          <li>
             <span>
               <TaskSquare />
             </span>
             Tiketlər
-          </Link>
-        </li>
-        <li>
-          <Link to={"/reports"}>
+          </li>
+        </Link>
+        <Link to={"/reports"}>
+          <li>
             <span>
               <DocumentText />
             </span>
             Reportlar
-          </Link>
-        </li>
-        <li>
-          <Link to={"/FAQ"}>
+          </li>
+        </Link>
+        <Link to={"/FAQ"}>
+          <li>
             <span>
               <MessageQuestion />
             </span>
             FAQ
-          </Link>
-        </li>
-
-        {/* <li>
-          <Link to={"/users"}>
-            <span>
-              <PeopleIcon />
-            </span>
-            İstifadəçilər
-          </Link>
-        </li> */}
+          </li>
+        </Link>
       </ul>
     </div>
   );

@@ -158,37 +158,67 @@ const Home = () => {
           <hr className="newTicketHR" />
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">Müraciət edən şəxsin adı soyadı</Label>
+              <Label htmlFor="message">
+                Müraciət edən şəxsin adı soyadı{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <Input placeholder="Ad Soyad" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">VÖEN</Label>
+              <Label htmlFor="message">
+                VÖEN{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <Input placeholder="000 000" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">Kassa nömrəsi</Label>
+              <Label htmlFor="message">
+                Kassa nömrəsi{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <Input placeholder="000 000" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">Müraciət edən şirkətin adı</Label>
+              <Label htmlFor="message">
+                Müraciət edən şirkətin adı{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <Input placeholder="Şirkət" />
           </div>
           <div className="phoneNumInp">
             <div className="mb-1">
-              <Label htmlFor="message">Əlaqə nömrəsi</Label>
+              <Label htmlFor="message">
+                Əlaqə nömrəsi{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <PhoneNumInput />
           </div>
           <div className="newTicketSelect">
             <div className="mb-1">
-              <Label htmlFor="message">Müraciətin növü</Label>
+              <Label htmlFor="message">
+                Müraciətin növü{" "}
+                <span className="text-amber-900 text-sm font-medium leading-5">
+                  *
+                </span>
+              </Label>
             </div>
             <Select>
               <SelectTrigger>
@@ -209,7 +239,11 @@ const Home = () => {
             <div className="mb-1">
               <Label htmlFor="message">Digər</Label>
             </div>
-            <Textarea placeholder="Type your message here." id="message" />
+            <Textarea
+              className="resize-none"
+              placeholder="Type your message here."
+              id="message"
+            />
           </div>
           <Button variant="mybtn" width="400px">
             <span className="newTicketText">Göndər</span>

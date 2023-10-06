@@ -7,22 +7,24 @@
     display: flex;
     align-items: center;
     span {
-      color: #84818a;
-      font-family: Montserrat;
-      font-size: 14px;
+      color: var(--color-text, #09090b);
+      font-family: Inter;
+      font-size: 16px;
       font-style: normal;
       font-weight: 500;
-      line-height: 14px;
+      line-height: 24px;
       margin-left: 8px;
       margin-right: 12px;
     }
     p {
-      color: #5c5c5c;
-      font-family: Montserrat;
+      color: var(--color-icon-muted, #71717a);
+
+      /* text-xs/font-regular */
+      font-family: Inter;
       font-size: 12px;
       font-style: normal;
-      font-weight: 500;
-      line-height: 20px;
+      font-weight: 400;
+      line-height: 16px; /* 133.333% */
     }
   }
   h4 {
