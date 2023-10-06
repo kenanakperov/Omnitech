@@ -88,6 +88,24 @@ export const Chime = (props) => (
   </svg>
 );
 
+export const ArrowUp = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={16}
+    height={16}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#18181B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 10 8 6l-4 4"
+    />
+  </svg>
+);
+
 export const Dot = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +118,23 @@ export const Dot = (props) => (
   </svg>
 );
 
-
+export const LogOutI = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={17}
+    height={16}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#18181B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M6.5 14H3.833A1.334 1.334 0 0 1 2.5 12.667V3.333A1.333 1.333 0 0 1 3.833 2H6.5m4.667 9.333L14.5 8m0 0-3.333-3.333M14.5 8h-8"
+    />
+  </svg>
+);
 
 export const Plus = (props) => (
   <svg
@@ -348,7 +382,7 @@ export const SearchI = (props) => (
       d="m17.5 17.5-3.583-3.583m1.916-4.75a6.667 6.667 0 1 1-13.333 0 6.667 6.667 0 0 1 13.333 0Z"
     />
   </svg>
-)
+);
 
 export const Close = (props) => (
   <svg
@@ -565,7 +599,7 @@ export const WhiteClose = (props) => (
       clipRule="evenodd"
     />
   </svg>
-)
+);
 
 export const PeopleIcon = (props) => (
   <svg

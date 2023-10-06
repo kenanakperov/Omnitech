@@ -1,49 +1,68 @@
 import React from "react";
-import { ArrowDown, Chime } from "../svg";
+import { ArrowDown, ArrowUp, Chime, LogOutI } from "../svg";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const TopBar = () => {
   const [hideDrop, setHideDrop] = useState("false");
-  const langDrop = () => {
-    hideDrop === "false" ? setHideDrop("showDrop") : setHideDrop("false");
-  };
+  const [logOutBtn, setLogOutBtn] = useState("true");
+  const [logout, setLogOut] = useState("false");
   const [lang, setLang] = useState("AZ");
+  const [langBtn, setLangBtn] = useState("false");
+const langFunc = ()=>{
+  lang === "AZ" ? setLang("RU") : setLang("AZ");
+  setHideDrop("false");
+  setLangBtn("false")
+}
+  const langBtnChange = () => {
+    if (langBtn === "true") {
+      setLangBtn("false");
+      setHideDrop("false");
+    } else {
+      setLangBtn("true");
+      setHideDrop("showDrop");
+    }
+  };
+  const arrowDownUp = () => {
+    if (logOutBtn === "true") {
+      setLogOutBtn("false");
+      setLogOut("true");
+    } else {
+      setLogOutBtn("true");
+      setLogOut("false");
+    }
+  };
   return (
     <>
       <div className="topBar">
         <div className="languageChanger">
           <span>{lang}</span>
-          <div onClick={langDrop}>
-            <ArrowDown />
+          <div onClick={langBtnChange}>
+            {langBtn === "false" ? <ArrowDown /> : <ArrowUp />}
           </div>
+          <p
+            className={hideDrop}
+            onClick={langFunc}
+          >
+            <h4>{lang === "AZ" ? "RU" : "AZ"}</h4>
+          </p>
         </div>
         <div className="notification">
           <Chime />
         </div>
         <div className="userProfile">
-          <img src={require("../images/Avatar.png")} alt=""/>
+          <img src={require("../images/Avatar.png")} alt="" />
           <span>Diana</span>
-          <ArrowDown />
+          <div className="cursor-pointer" onClick={arrowDownUp}>
+            {logOutBtn === "false" ? <ArrowUp /> : <ArrowDown />}
+          </div>
+          <div className="profileDrop">
+            <Link to={"/"} className={logout}>
+              Çıxış
+            </Link>
+          </div>
         </div>
       </div>
-      <p className={hideDrop}>
-        <span
-          onClick={() => {
-            setLang("AZ");
-            setHideDrop("false");
-          }}
-        >
-          AZ
-        </span>
-        <span
-          onClick={() => {
-            setLang("RU");
-            setHideDrop("false");
-          }}
-        >
-          RU
-        </span>
-      </p>
     </>
   );
 };
