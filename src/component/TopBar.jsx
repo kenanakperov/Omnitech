@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDown, ArrowUp, Chime, LogOutI } from "../svg";
+import { ArrowDown, ArrowUp, Chime } from "../svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
