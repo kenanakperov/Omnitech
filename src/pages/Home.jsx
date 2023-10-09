@@ -171,9 +171,6 @@ const Home = () => {
             <div className="mb-1">
               <Label htmlFor="message">
                 VÖEN{" "}
-                <span className="text-amber-900 text-sm font-medium leading-5">
-                  *
-                </span>
               </Label>
             </div>
             <Input placeholder="000 000" />

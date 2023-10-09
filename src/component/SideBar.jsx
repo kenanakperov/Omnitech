@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <div className="sideBar">
       <div className="sideBarLogo">
-        <div className="sideBarLogoImg"></div>
+        <Link to={"/home"} className="sideBarLogoImg"></Link>
       </div>
       <ul className="sideBarUl">
         <Link to={"/home"}>
