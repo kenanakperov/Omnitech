@@ -106,6 +106,24 @@ export const ArrowUp = (props) => (
   </svg>
 );
 
+export const MoonI = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={20}
+    height={20}
+    fill="none"
+    {...props}
+  >
+    <path
+      stroke="#18181B"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={1.67}
+      d="M10 2.5a5.303 5.303 0 0 0 7.5 7.5A7.5 7.5 0 1 1 10 2.5Z"
+    />
+  </svg>
+);
+
 export const Dot = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"

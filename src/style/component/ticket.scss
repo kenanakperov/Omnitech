@@ -1,4 +1,5 @@
 .ticket {
+  width: 100%;
   padding: 20px;
   border-radius: 8px;
   margin-bottom: 12px;
@@ -132,7 +133,6 @@
   }
 }
 
-
 .SecondTicketFilter {
   margin-bottom: 24px;
 }
@@ -167,11 +167,11 @@
   height: 32px;
 }
 
-.checkBoxTT{
+.checkBoxTT {
   margin-bottom: 24px;
   display: flex;
   align-items: center;
-  .checkBoxLabel{
+  .checkBoxLabel {
     margin-left: 8px;
   }
 }

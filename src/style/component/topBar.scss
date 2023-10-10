@@ -1,10 +1,16 @@
 .topBar {
-  width: 100%;
+  position: relative;
   display: flex;
-  padding: 14px 36px;
   justify-content: flex-end;
   align-items: center;
+  width: 100%;
+  padding: 14px 36px;
   gap: 16px;
+  .moonIcon{
+    position: absolute;
+    left: 300px;
+    cursor: pointer;
+  }
   .languageChanger {
     display: flex;
     padding: 8px 18px;
@@ -24,7 +30,7 @@
       font-style: normal;
       font-weight: 500;
       line-height: 24px;
-      h4{
+      span{
         padding: 8px 12px;
         border-radius: 14px;
         background: var(--color-bg-elevated, #f4f4f5);

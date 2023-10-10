@@ -1,5 +1,5 @@
 import React from "react";
-import { ArrowDown, ArrowUp, Chime } from "../svg";
+import { ArrowDown, ArrowUp, Chime, MoonI } from "../svg";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -9,11 +9,11 @@ const TopBar = () => {
   const [logout, setLogOut] = useState("false");
   const [lang, setLang] = useState("AZ");
   const [langBtn, setLangBtn] = useState("false");
-const langFunc = ()=>{
-  lang === "AZ" ? setLang("RU") : setLang("AZ");
-  setHideDrop("false");
-  setLangBtn("false")
-}
+  const langFunc = () => {
+    lang === "AZ" ? setLang("RU") : setLang("AZ");
+    setHideDrop("false");
+    setLangBtn("false");
+  };
   const langBtnChange = () => {
     if (langBtn === "true") {
       setLangBtn("false");
@@ -35,16 +35,16 @@ const langFunc = ()=>{
   return (
     <>
       <div className="topBar">
+        <div className="moonIcon">
+          <MoonI />
+        </div>
         <div className="languageChanger">
           <span>{lang}</span>
           <div onClick={langBtnChange}>
             {langBtn === "false" ? <ArrowDown /> : <ArrowUp />}
           </div>
-          <p
-            className={hideDrop}
-            onClick={langFunc}
-          >
-            <h4>{lang === "AZ" ? "RU" : "AZ"}</h4>
+          <p className={hideDrop} onClick={langFunc}>
+            <span>{lang === "AZ" ? "RU" : "AZ"}</span>
           </p>
         </div>
         <div className="notification">

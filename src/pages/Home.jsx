@@ -3,7 +3,6 @@ import TopBar from "../component/TopBar";
 import Ticket from "../component/Ticket";
 import { Pin, Plus, SilverClose } from "../svg";
 import { useState } from "react";
-import PhoneNumInput from "../component/PhoneNumberInput";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
@@ -18,11 +17,110 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
+// import axios from "axios";
 
 const Home = () => {
   const [hideClass, setHideClass] = useState("ticketFilter");
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
+  const [salaam, setsalaam] = useState("");
+  let [ticketData, setTicketData] = useState({
+    fullName: "",
+    voen: "",
+    kassaId: "",
+    company: "",
+    other: "",
+    startNum: "",
+    num: "",
+    category: "",
+  });
+
+  const handleChange = (e) => {
+    let value = e.target.value;
+    let name = e.target.name;
+
+    setTicketData((prevalue) => {
+      return {
+        ...prevalue,
+        [name]: value,
+      };
+    });
+  };
+
+  const data = [
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username:
+          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 1,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "n7BY1AO1B8i0R8wer",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+  ];
+  const dataCategories = [
+    {
+      id: 0,
+      name: "salam",
+      description: "string",
+    },
+    {
+      id: 1,
+      name: "salamm",
+      description: "string",
+    },
+    {
+      id: 2,
+      name: "salammm",
+      description: "string",
+    },
+    {
+      id: 3,
+      name: "salammmm",
+      description: "string",
+    },
+  ];
+  // useEffect(()=>{
+  //   axios("/api/auth/registration/").then(res=>{
+  //     console.log(res)
+  //   });
+  // },[])
   const newTicketButton = () => {
     if (hideClass === "false") {
       setHideClass("ticketFilter");
@@ -76,20 +174,26 @@ const Home = () => {
             </label>
           </div>
           <div className="ticketsArea">
-            <Ticket
-              circle="blue"
-              ticketNum="Tiket# 5"
-              content="Kassa"
-              date="Yaradıldı: 01/09/23 - 12:45"
-              name="Orxan Qasımov"
-              companyName="Mothercare"
-              phoneNum="+994-XX-XXX-XX-XX"
-              comment="Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit.Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-              ticketFile="ticketFile"
-              ticketWhose="ticketWhose"
-              ticketWhoseTT="ticketWhoseTT"
-            />
-            <Ticket
+            {data.map((item) => {
+              return (
+                <Ticket
+                  key={item.id}
+                  circle="blue"
+                  ticketNum={"Tiket# " + item.id}
+                  content={item.title}
+                  date="Yaradıldı: 01/09/23 - 12:45"
+                  name={item.owner.first_name + " " + item.owner.last_name}
+                  companyName="Mothercare"
+                  phoneNum="+994-XX-XXX-XX-XX"
+                  comment={item.description}
+                  ticketFile="ticketFile"
+                  ticketWhose="ticketWhose"
+                  ticketWhoseTT="ticketWhoseTT"
+                />
+              );
+            })}
+
+            {/* <Ticket
               circle="green"
               ticketNum="Tiket# 4"
               content="Yeni müştəri"
@@ -98,11 +202,12 @@ const Home = () => {
               companyName="Mothercare"
               phoneNum="+994-XX-XXX-XX-XX"
               ticketFile="false"
+              comment="lorem ajxano aocxjaiojxc ajncoasjc aoisjciojasiocj ascoiasjicjsoajc asocijsaicjsajco aicjiajca caoicjaocjad coiajcajdocja caocjaoijcoa coiacjoiajc acoijadocjaoic aocjaoicjaoijc adjcoaijca caijciajco acjiaiojcdoiac ajicaoijcanlcnalna cajcpioaispojcncaicjpacj adipcjpac"
               ticketWhose="false"
               ticketWhoseTT="ticketWhoseTTHide"
               HR="false"
-            />
-            <Ticket
+            /> */}
+            {/* <Ticket
               circle="yellow"
               ticketNum="Tiket# 3"
               content="Lisenziya"
@@ -126,8 +231,8 @@ const Home = () => {
               ticketFile="ticketFile"
               ticketWhose="ticketWhose"
               ticketWhoseTT="ticketWhoseTT"
-            />
-            <Ticket
+            /> */}
+            {/* <Ticket
               circle="blue"
               ticketNum="Tiket# 1"
               content="Kassa"
@@ -139,7 +244,7 @@ const Home = () => {
               ticketWhose="false"
               ticketWhoseTT="ticketWhoseTTHide"
               HR="false"
-            />
+            /> */}
           </div>
         </div>
         <div className={newTicketHide}>
@@ -165,15 +270,17 @@ const Home = () => {
                 </span>
               </Label>
             </div>
-            <Input placeholder="Ad Soyad" />
+            <Input
+              onChange={handleChange}
+              name="fullName"
+              placeholder="Ad Soyad"
+            />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
-                VÖEN{" "}
-              </Label>
+              <Label htmlFor="message">VÖEN </Label>
             </div>
-            <Input placeholder="000 000" />
+            <Input name="voen" onChange={handleChange} placeholder="000 000" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
@@ -184,7 +291,11 @@ const Home = () => {
                 </span>
               </Label>
             </div>
-            <Input placeholder="000 000" />
+            <Input
+              onChange={handleChange}
+              name="kassaId"
+              placeholder="000 000"
+            />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
@@ -195,7 +306,11 @@ const Home = () => {
                 </span>
               </Label>
             </div>
-            <Input placeholder="Şirkət" />
+            <Input
+              onChange={handleChange}
+              name="company"
+              placeholder="Şirkət"
+            />
           </div>
           <div className="phoneNumInp">
             <div className="mb-1">
@@ -206,7 +321,22 @@ const Home = () => {
                 </span>
               </Label>
             </div>
-            <PhoneNumInput />
+            <div className="phoneNumInp">
+              <select name="startNum" onChange={handleChange}>
+                <option value="">000</option>
+                <option value="055">055</option>
+                <option value="070">070</option>
+                <option value="077">077</option>
+                <option value="010">010</option>
+                <option value="050">050</option>
+              </select>
+              <input
+                name="num"
+                onChange={handleChange}
+                type="number"
+                placeholder="000 00 00"
+              />
+            </div>
           </div>
           <div className="newTicketSelect">
             <div className="mb-1">
@@ -217,17 +347,19 @@ const Home = () => {
                 </span>
               </Label>
             </div>
-            <Select>
+            <Select name="category" onValueChange={(e) => setsalaam(e)}>
               <SelectTrigger>
                 <SelectValue placeholder="" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
-                  <SelectItem value="apple">Apple</SelectItem>
-                  <SelectItem value="banana">Banana</SelectItem>
-                  <SelectItem value="blueberry">Blueberry</SelectItem>
-                  <SelectItem value="grapes">Grapes</SelectItem>
-                  <SelectItem value="pineapple">Pineapple</SelectItem>
+                  {dataCategories.map((item, index) => {
+                    return (
+                      <SelectItem key={item.id} value={item.name}>
+                        {item.name}
+                      </SelectItem>
+                    );
+                  })}
                 </SelectGroup>
               </SelectContent>
             </Select>
@@ -237,12 +369,21 @@ const Home = () => {
               <Label htmlFor="message">Digər</Label>
             </div>
             <Textarea
+              onChange={handleChange}
+              name="other"
               className="resize-none"
               placeholder="Type your message here."
               id="message"
             />
           </div>
-          <Button variant="mybtn" width="400px">
+          <Button
+            onClick={() => {
+              ticketData.category = salaam;
+              console.log(ticketData);
+            }}
+            variant="mybtn"
+            width="400px"
+          >
             <span className="newTicketText">Göndər</span>
           </Button>
         </div>
