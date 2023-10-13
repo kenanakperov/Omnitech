@@ -1,19 +1,43 @@
 import { BgLines } from "../svg";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
 import { useState } from "react";
+// import axios from "axios";
 
 const Login = () => {
-  let [loginData, setLoginData] = useState({
-    mail: "",
+  const navigate = useNavigate();
+  const code = {
+    username: "kenanakperov@omnitech.com",
+    password: "kenan2004",
+  };
+  const [loginData, setLoginData] = useState({
+    username: "",
     password: "",
   });
 
-  const handleChange = (event) => {
-    let value = event.target.value;
-    let name = event.target.name;
+  const sendLogin = () => {
+    if (
+      code.username === loginData.username &&
+      code.password === loginData.password
+    ) {
+      console.log("Salam");
+      navigate("/home");
+    } else {
+      console.log("Sagooool");
+      navigate("/");
+    }
+  };
+  //   const sendLogin = () => {
+  //   axios.post("url", loginData).then((res) => {
+  //     console.log(res);
+  //   });
+  // };
+
+  const handleChange = (e) => {
+    let value = e.target.value;
+    let name = e.target.name;
 
     setLoginData((prevalue) => {
       return {
@@ -35,18 +59,18 @@ const Login = () => {
           <h2>Tiket sistemə giriş</h2>
           <div className="w-full">
             <div className="mb-1">
-              <Label htmlFor="message">Email</Label>
+              <Label>Email</Label>
             </div>
             <Input
               onChange={handleChange}
-              name="mail"
+              name="username"
               type="email"
               placeholder="kenanakperov@omnitech.az"
             />
           </div>
           <div className="w-full mt-8 mb-4">
             <div className="mb-1">
-              <Label htmlFor="message">Şifrə</Label>
+              <Label>Şifrə</Label>
             </div>
             <Input
               onChange={handleChange}
@@ -56,11 +80,15 @@ const Login = () => {
             />
           </div>
           <div className="loginBtn">
-            <Link to={"/home"}>
-              <Button onClick={()=>console.log(loginData)} variant="mybtn" width="400px">
-                <Label htmlFor="message">Daxil ol</Label>
-              </Button>
-            </Link>
+            <Button
+              onClick={() => {
+                sendLogin();
+              }}
+              variant="mybtn"
+              width="400px"
+            >
+              <Label>Daxil ol</Label>
+            </Button>
           </div>
         </div>
       </div>

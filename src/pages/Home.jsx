@@ -17,13 +17,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-// import axios from "axios";
 
 const Home = () => {
   const [hideClass, setHideClass] = useState("ticketFilter");
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
   const [salaam, setsalaam] = useState("");
+  
   let [ticketData, setTicketData] = useState({
     fullName: "",
     voen: "",
@@ -34,6 +34,17 @@ const Home = () => {
     num: "",
     category: "",
   });
+
+  // useEffect(()=>{
+  //   axios.get("url").then((res) => {
+  //     console.log(res);
+  //   });
+  // },[])
+  // const sendTicketData = () => {
+  //   axios.post("url",ticketData).then(res=>{
+  //     console.log(res)
+  //   })
+  // };
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -116,11 +127,6 @@ const Home = () => {
       description: "string",
     },
   ];
-  // useEffect(()=>{
-  //   axios("/api/auth/registration/").then(res=>{
-  //     console.log(res)
-  //   });
-  // },[])
   const newTicketButton = () => {
     if (hideClass === "false") {
       setHideClass("ticketFilter");
@@ -379,6 +385,7 @@ const Home = () => {
           <Button
             onClick={() => {
               ticketData.category = salaam;
+              // sendTicketData()
               console.log(ticketData);
             }}
             variant="mybtn"
