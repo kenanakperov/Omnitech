@@ -385,7 +385,6 @@ const Home = () => {
           <Button
             onClick={() => {
               ticketData.category = salaam;
-              // sendTicketData()
               console.log(ticketData);
             }}
             variant="mybtn"

@@ -3,29 +3,40 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 // import axios from "axios";
 
 const Login = () => {
   const navigate = useNavigate();
+  const [storageAcsess, setStorageAcsess] = useState("");
+  const [errormessage, setErrormessage] = useState("");
+
+  useEffect(()=>{
+    setStorageAcsess(localStorage.getItem("token"))
+  },[])
   const code = {
-    username: "kenanakperov@omnitech.com",
+    username: "kenanakperov@omnitech.az",
     password: "kenan2004",
+    access: "salamsalam",
   };
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
+  if (storageAcsess === code.access) {
+    navigate("/home")
+  }
+
   const sendLogin = () => {
     if (
       code.username === loginData.username &&
       code.password === loginData.password
     ) {
-      console.log("Salam");
+      localStorage.setItem('token',code.access);
       navigate("/home");
     } else {
-      console.log("Sagooool");
+      setErrormessage("Şifrə və ya mail yanlış daxil edilib!!")
       navigate("/");
     }
   };
@@ -79,6 +90,7 @@ const Login = () => {
               placeholder="*********"
             />
           </div>
+          <span className="errormessage">{errormessage}</span>
           <div className="loginBtn">
             <Button
               onClick={() => {

@@ -1,9 +1,10 @@
 import React from "react";
 import { ArrowDown, ArrowUp, Chime, MoonI } from "../svg";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
+  const navigate = useNavigate()
   const [hideDrop, setHideDrop] = useState("false");
   const [logOutBtn, setLogOutBtn] = useState("true");
   const [logout, setLogOut] = useState("false");
@@ -57,9 +58,13 @@ const TopBar = () => {
             {logOutBtn === "false" ? <ArrowUp /> : <ArrowDown />}
           </div>
           <div className="profileDrop">
-            <Link to={"/"} className={logout}>
+            <h6 className={logout} 
+            onClick={()=>{
+              localStorage.removeItem("token");
+              navigate("/");
+            }} >
               Çıxış
-            </Link>
+            </h6>
           </div>
         </div>
       </div>
