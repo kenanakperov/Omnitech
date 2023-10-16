@@ -11,9 +11,9 @@ const Login = () => {
   const [storageAcsess, setStorageAcsess] = useState("");
   const [errormessage, setErrormessage] = useState("");
 
-  useEffect(()=>{
-    setStorageAcsess(localStorage.getItem("token"))
-  },[])
+  useEffect(() => {
+    setStorageAcsess(localStorage.getItem("token"));
+  }, []);
   const code = {
     username: "kenanakperov@omnitech.az",
     password: "kenan2004",
@@ -25,7 +25,7 @@ const Login = () => {
   });
 
   if (storageAcsess === code.access) {
-    navigate("/home")
+    navigate("/home");
   }
 
   const sendLogin = () => {
@@ -33,10 +33,10 @@ const Login = () => {
       code.username === loginData.username &&
       code.password === loginData.password
     ) {
-      localStorage.setItem('token',code.access);
+      localStorage.setItem("token", code.access);
       navigate("/home");
     } else {
-      setErrormessage("Şifrə və ya mail yanlış daxil edilib!!")
+      setErrormessage("Şifrə və ya mail yanlış daxil edilib!!");
       navigate("/");
     }
   };

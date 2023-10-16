@@ -23,7 +23,7 @@ const Home = () => {
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
   const [salaam, setsalaam] = useState("");
-  
+
   let [ticketData, setTicketData] = useState({
     fullName: "",
     voen: "",

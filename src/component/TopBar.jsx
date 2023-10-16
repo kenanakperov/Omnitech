@@ -1,10 +1,10 @@
 import React from "react";
-import { ArrowDown, ArrowUp, Chime, MoonI } from "../svg";
+import { ArrowDown, ArrowUp, Chime, LogOutI, MoonI } from "../svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const TopBar = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [hideDrop, setHideDrop] = useState("false");
   const [logOutBtn, setLogOutBtn] = useState("true");
   const [logout, setLogOut] = useState("false");
@@ -27,7 +27,7 @@ const TopBar = () => {
   const arrowDownUp = () => {
     if (logOutBtn === "true") {
       setLogOutBtn("false");
-      setLogOut("true");
+      setLogOut("profileDrop");
     } else {
       setLogOutBtn("true");
       setLogOut("false");
@@ -57,14 +57,17 @@ const TopBar = () => {
           <div className="cursor-pointer" onClick={arrowDownUp}>
             {logOutBtn === "false" ? <ArrowUp /> : <ArrowDown />}
           </div>
-          <div className="profileDrop">
-            <h6 className={logout} 
-            onClick={()=>{
+          <div
+            className={logout}
+            onClick={() => {
               localStorage.removeItem("token");
               navigate("/");
-            }} >
-              Çıxış
-            </h6>
+            }}
+          >
+            <div>
+              <h6>Çıxış</h6>
+              <LogOutI />
+            </div>
           </div>
         </div>
       </div>

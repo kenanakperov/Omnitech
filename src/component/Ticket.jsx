@@ -35,7 +35,6 @@ const Ticket = (circle) => {
   const [selectValue, setSelectValue] = useState("");
   const [toMe, setToMe] = useState("Mənə təyin et");
 
-
   const inputHide = () => {
     if (rightArrow === "false") {
       setRightArrow("true");
@@ -49,7 +48,7 @@ const Ticket = (circle) => {
     setSelectValue(value.charAt(0).toUpperCase() + value.slice(1));
     setRightArrow("false");
     setArrowHide("");
-    setToMe("")
+    setToMe("");
   };
   const activeNonActive = () => {
     if (activeFirst === "active") {
@@ -112,7 +111,7 @@ const Ticket = (circle) => {
                 src={require("../images/Avatar.png")}
                 alt=""
               />
-              <span>Vlad</span>
+              <span>Diana</span>
               <RightArrow />
               <h3>Satış</h3>
             </div>
@@ -182,7 +181,7 @@ const Ticket = (circle) => {
                     <div className="detailsContentRWhoseDate">
                       <div className="detailsContentRWhose">
                         <img src={require("../images/Avatarmen.png")} alt="" />
-                        <span>Vlad</span>
+                        <span>Diana</span>
                       </div>
                       <span>01/09/23 - 12:45</span>
                     </div>
@@ -204,22 +203,22 @@ const Ticket = (circle) => {
                   </div>
                   <div className={changeTaskHistory}>
                     <TaskHistoryChanger
-                      name="Vlad"
+                      name="Diana"
                       status="Updated task status"
                       date="01/09/23 - 12:45"
                     />
                     <TaskHistoryChanger
-                      name="Vlad"
+                      name="Diana"
                       status="Added a comment"
                       date="01/09/23 - 12:33"
                     />
                     <TaskHistoryChanger
-                      name="Vlad"
+                      name="Diana"
                       status="Assign to Dima"
                       date="01/09/23 - 12:28"
                     />
                     <TaskHistoryChanger
-                      name="Vlad"
+                      name="Diana"
                       status="Assign to Satış group"
                       date="01/09/23 - 12:24"
                     />

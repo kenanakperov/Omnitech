@@ -3,20 +3,18 @@ import { BlackPlus, WhiteClose } from "../svg";
 
 const FaqCard = (props) => {
   const [faqDetailsHide, setFaqDetailsHide] = useState("faqCardBtn");
-  const [faqDetailsHideSecond, setFaqDetailsHideSecond] =
-        useState("false");
+  const [faqDetailsHideSecond, setFaqDetailsHideSecond] = useState("false");
   const [hideContent, setHideContent] = useState("false");
-    
 
   const faqDetails = () => {
     if (faqDetailsHide === "false") {
       setFaqDetailsHide("faqCardBtn");
-        setFaqDetailsHideSecond("false");
-        setHideContent("false")
+      setFaqDetailsHideSecond("false");
+      setHideContent("false");
     } else {
       setFaqDetailsHide("false");
-        setFaqDetailsHideSecond("faqCardBtnSecond");
-        setHideContent("")
+      setFaqDetailsHideSecond("faqCardBtnSecond");
+      setHideContent("");
     }
   };
   return (
