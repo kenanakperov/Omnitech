@@ -1,8 +1,7 @@
-import React from 'react'
-import TopBar from '../component/TopBar'
+import React from "react";
+import TopBar from "../component/TopBar";
 import SideBar from "../component/SideBar";
-import FaqCard from '../component/FaqCard';
-
+import FaqCard from "../component/FaqCard";
 
 const FAQ = () => {
   return (
@@ -23,32 +22,32 @@ const FAQ = () => {
             </div>
           </div>
           <FaqCard
-            num="1"
+            num="01"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
           <FaqCard
-            num="1"
+            num="02"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
           <FaqCard
-            num="1"
+            num="03"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
           <FaqCard
-            num="1"
+            num="04"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
           <FaqCard
-            num="1"
+            num="05"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
           <FaqCard
-            num="1"
+            num="06"
             title="Hansı xidmətləri təklif edirik?"
             content="Lorem ipsum dolor sit amet consectetur. Ultrices suspendisse volutpat bibendum egestas viverra tincidunt dolor cursus. Nunc cras dignissim massa lacus nunc bibendum urna."
           />
@@ -56,6 +55,6 @@ const FAQ = () => {
       </div>
     </div>
   );
-}
+};
 
-export default FAQ
+export default FAQ;

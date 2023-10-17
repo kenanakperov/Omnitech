@@ -11,9 +11,8 @@ function App() {
   const navigate = useNavigate();
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      console.log("tokenYest")
-    }else{
-      navigate("/")
+    } else {
+      navigate("/");
     }
   });
   return (
