@@ -23,6 +23,7 @@ const AdminHome = () => {
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
   const [salaam, setsalaam] = useState("");
+  const [selectW, setSelectW] = useState("w-40");
 
   let [ticketData, setTicketData] = useState({
     fullName: "",
@@ -132,7 +133,9 @@ const AdminHome = () => {
       setHideClass("ticketFilter");
       setHideButton("newTicketBtn");
       setNewTicketHide("false");
+      setSelectW("w-40")
     } else {
+      setSelectW("w-20");
       setHideClass("false");
       setNewTicketHide("newTicket");
       setHideButton("false");
@@ -159,27 +162,57 @@ const AdminHome = () => {
             </div>
           </div>
           <div className="ticketFilter">
-            <Tabs defaultValue="hamisi" className="w-250">
+            <Tabs
+              defaultValue="hamisi"
+              className="w-250"
+              onValueChange={(value) => {
+                switch (value) {
+                  case "hamisi":
+                    console.log("hamisi");
+                    break;
+                  case "satis":
+                    console.log("satis");
+                    break;
+                  case "yigim":
+                    console.log("yigim");
+                    break;
+                  case "texniki":
+                    console.log("texniki");
+                    break;
+                  case "alis":
+                    console.log("alis");
+                    break;
+                  case "proqramlama":
+                    console.log("proqramlama");
+                    break;
+                  case "planlama":
+                    console.log("planlama");
+                    break;
+                  default:
+                    console.log("hamisi def");
+                }
+              }}
+            >
               <TabsList>
-                <TabsTrigger className="w-40" value="hamisi">
+                <TabsTrigger className={selectW} value="hamisi">
                   Hamısı
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="satis">
+                <TabsTrigger className={selectW} value="satis">
                   Satış
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="yigim">
+                <TabsTrigger className={selectW} value="yigim">
                   Yığım
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="texniki">
+                <TabsTrigger className={selectW} value="texniki">
                   Texniki
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="alis">
+                <TabsTrigger className={selectW} value="alis">
                   Alış
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="proqramlama">
+                <TabsTrigger className={selectW} value="proqramlama">
                   Proqramlama
                 </TabsTrigger>
-                <TabsTrigger className="w-40" value="planlama">
+                <TabsTrigger className={selectW} value="planlama">
                   Planlama
                 </TabsTrigger>
                 <Button variant="prevNextBtn">
@@ -190,10 +223,7 @@ const AdminHome = () => {
           </div>
           <div className="checkBoxTT">
             <Checkbox />
-            <label
-              htmlFor="terms"
-              className="checkBoxLabel text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
+            <label className="checkBoxLabel text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Yalnız təyin edilməmiş tiketlər
             </label>
           </div>
@@ -234,7 +264,7 @@ const AdminHome = () => {
           <hr className="newTicketHR" />
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciət edən şəxsin adı soyadı{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -249,13 +279,13 @@ const AdminHome = () => {
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">VÖEN </Label>
+              <Label>VÖEN </Label>
             </div>
             <Input name="voen" onChange={handleChange} placeholder="000 000" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Kassa nömrəsi{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -270,7 +300,7 @@ const AdminHome = () => {
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciət edən şirkətin adı{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -285,7 +315,7 @@ const AdminHome = () => {
           </div>
           <div className="phoneNumInp">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Əlaqə nömrəsi{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -311,7 +341,7 @@ const AdminHome = () => {
           </div>
           <div className="newTicketSelect">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciətin növü{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -337,7 +367,7 @@ const AdminHome = () => {
           </div>
           <div className="newTicketComment">
             <div className="mb-1">
-              <Label htmlFor="message">Digər</Label>
+              <Label>Digər</Label>
             </div>
             <Textarea
               onChange={handleChange}

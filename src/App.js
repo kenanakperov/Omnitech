@@ -19,7 +19,9 @@ function App() {
     } else {
       navigate("/");
     }
-  },[]);
+  }
+  , []
+  );
   return (
     <div className="App">
       <Routes>

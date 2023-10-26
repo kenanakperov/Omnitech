@@ -19,11 +19,11 @@ import {
 } from "../components/ui/select";
 
 const Home = () => {
+  // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const [hideClass, setHideClass] = useState("ticketFilter");
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
   const [salaam, setsalaam] = useState("");
-
   let [ticketData, setTicketData] = useState({
     fullName: "",
     voen: "",
@@ -34,17 +34,6 @@ const Home = () => {
     num: "",
     category: "",
   });
-
-  // useEffect(()=>{
-  //   axios.get("url").then((res) => {
-  //     console.log(res);
-  //   });
-  // },[])
-  // const sendTicketData = () => {
-  //   axios.post("url",ticketData).then(res=>{
-  //     console.log(res)
-  //   })
-  // };
 
   const handleChange = (e) => {
     let value = e.target.value;
@@ -58,53 +47,6 @@ const Home = () => {
     });
   };
 
-  const data = [
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username:
-          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 1,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "n7BY1AO1B8i0R8wer",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-  ];
   const dataCategories = [
     {
       id: 0,
@@ -138,6 +80,99 @@ const Home = () => {
       setHideButton("false");
     }
   };
+  const data = [
+    {
+      id: 1,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username:
+          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 2,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "n7BY1AO1B8i0R8wer",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 3,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username:
+          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 4,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username:
+          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+  ];
   return (
     <div className="home">
       <SideBar />
@@ -159,23 +194,33 @@ const Home = () => {
             </div>
           </div>
           <div className="ticketFilter">
-            <Tabs defaultValue="account" className="w-[400px]">
+            <Tabs
+              onValueChange={(value) => {
+                if (value === "satis") {
+                  console.log("satis ticketleri");
+                } else {
+                  console.log("menim ticketlerim");
+                }
+              }}
+              defaultValue="satis"
+              className="w-[400px]"
+            >
               <TabsList>
-                <TabsTrigger value="account">
-                  Satış qrupun tiketləri
-                </TabsTrigger>
-                <TabsTrigger value="password">
-                  Yalnız mənim tiketlər
-                </TabsTrigger>
+                <TabsTrigger value="satis">Satış qrupun tiketləri</TabsTrigger>
+                <TabsTrigger value="mine">Yalnız mənim tiketlər</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
           <div className="checkBoxTT">
-            <Checkbox />
-            <label
-              htmlFor="terms"
-              className="checkBoxLabel text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-            >
+            <Checkbox
+              onCheckedChange={(checked) => {
+                if (checked === true) {
+                  console.log("checked");
+                  //axios get my tickets
+                }
+              }}
+            />
+            <label className="checkBoxLabel text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">
               Yalnız təyin edilməmiş tiketlər
             </label>
           </div>
@@ -184,73 +229,22 @@ const Home = () => {
               return (
                 <Ticket
                   key={item.id}
-                  circle="blue"
+                  circle={item.state}
                   ticketNum={"Tiket# " + item.id}
                   content={item.title}
-                  date="Yaradıldı: 01/09/23 - 12:45"
+                  date="Yaradıldı: 01/09/23 - 12:55"
                   name={item.owner.first_name + " " + item.owner.last_name}
                   companyName="Mothercare"
                   phoneNum="+994-XX-XXX-XX-XX"
                   comment={item.description}
-                  ticketFile="ticketFile"
-                  ticketWhose="ticketWhose"
-                  ticketWhoseTT="ticketWhoseTT"
+                  kassaID="0000000"
+                  voen="0000000"
+                  // ticketFile="ticketFile"
+                  // ticketWhose={item.owner.first_name +" " +item.owner.first_name}
+                  // ticketWhoseTT="ticketWhoseTT"
                 />
               );
             })}
-
-            {/* <Ticket
-              circle="green"
-              ticketNum="Tiket# 4"
-              content="Yeni müştəri"
-              date="Yaradıldı: 01/09/23 - 12:45"
-              name="Kənan Əkbərov"
-              companyName="Mothercare"
-              phoneNum="+994-XX-XXX-XX-XX"
-              ticketFile="false"
-              comment="lorem ajxano aocxjaiojxc ajncoasjc aoisjciojasiocj ascoiasjicjsoajc asocijsaicjsajco aicjiajca caoicjaocjad coiajcajdocja caocjaoijcoa coiacjoiajc acoijadocjaoic aocjaoicjaoijc adjcoaijca caijciajco acjiaiojcdoiac ajicaoijcanlcnalna cajcpioaispojcncaicjpacj adipcjpac"
-              ticketWhose="false"
-              ticketWhoseTT="ticketWhoseTTHide"
-              HR="false"
-            /> */}
-            {/* <Ticket
-              circle="yellow"
-              ticketNum="Tiket# 3"
-              content="Lisenziya"
-              date="Yaradıldı: 01/09/23 - 12:45"
-              name="Orxan Qasımov"
-              companyName="Mothercare"
-              phoneNum="+994-XX-XXX-XX-XX"
-              ticketFile="false"
-              ticketWhose="false"
-              ticketWhoseTT="ticketWhoseTTHide"
-              HR="false"
-            />
-            <Ticket
-              circle="blue"
-              ticketNum="Tiket# 2"
-              content="MDM"
-              date="Yaradıldı: 01/09/23 - 12:45"
-              name="Orxan Qasımov"
-              companyName="Mothercare"
-              phoneNum="+994-XX-XXX-XX-XX"
-              ticketFile="ticketFile"
-              ticketWhose="ticketWhose"
-              ticketWhoseTT="ticketWhoseTT"
-            /> */}
-            {/* <Ticket
-              circle="blue"
-              ticketNum="Tiket# 1"
-              content="Kassa"
-              date="Yaradıldı: 01/09/23 - 12:45"
-              name="Orxan Qasımov"
-              companyName="Mothercare"
-              phoneNum="+994-XX-XXX-XX-XX"
-              ticketFile="false"
-              ticketWhose="false"
-              ticketWhoseTT="ticketWhoseTTHide"
-              HR="false"
-            /> */}
           </div>
         </div>
         <div className={newTicketHide}>
@@ -269,7 +263,7 @@ const Home = () => {
           <hr className="newTicketHR" />
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciət edən şəxsin adı soyadı{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -284,13 +278,13 @@ const Home = () => {
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">VÖEN </Label>
+              <Label>VÖEN </Label>
             </div>
             <Input name="voen" onChange={handleChange} placeholder="000 000" />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Kassa nömrəsi{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -305,7 +299,7 @@ const Home = () => {
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciət edən şirkətin adı{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -320,7 +314,7 @@ const Home = () => {
           </div>
           <div className="phoneNumInp">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Əlaqə nömrəsi{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -331,10 +325,14 @@ const Home = () => {
               <select name="startNum" onChange={handleChange}>
                 <option value="">000</option>
                 <option value="055">055</option>
+                <option value="099">099</option>
                 <option value="070">070</option>
                 <option value="077">077</option>
-                <option value="010">010</option>
                 <option value="050">050</option>
+                <option value="010">010</option>
+                <option value="051">051</option>
+                <option value="060">060</option>
+                <option value="012">012</option>
               </select>
               <input
                 name="num"
@@ -346,7 +344,7 @@ const Home = () => {
           </div>
           <div className="newTicketSelect">
             <div className="mb-1">
-              <Label htmlFor="message">
+              <Label>
                 Müraciətin növü{" "}
                 <span className="text-amber-900 text-sm font-medium leading-5">
                   *
@@ -372,7 +370,7 @@ const Home = () => {
           </div>
           <div className="newTicketComment">
             <div className="mb-1">
-              <Label htmlFor="message">Digər</Label>
+              <Label>Digər</Label>
             </div>
             <Textarea
               onChange={handleChange}

@@ -28,7 +28,7 @@ const Login = () => {
     navigate("/home");
   }
 
-  const sendLogin = () => {
+  const sendLogin = (e) => {
     if (
       code.username === loginData.username &&
       code.password === loginData.password
@@ -40,12 +40,6 @@ const Login = () => {
       navigate("/");
     }
   };
-  //   const sendLogin = () => {
-  //   axios.post("url", loginData).then((res) => {
-  //     console.log(res);
-  //   });
-  // };
-
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;

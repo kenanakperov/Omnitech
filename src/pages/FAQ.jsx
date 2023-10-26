@@ -1,9 +1,9 @@
-import React from "react";
 import TopBar from "../component/TopBar";
 import SideBar from "../component/SideBar";
 import FaqCard from "../component/FaqCard";
 
 const FAQ = () => {
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   return (
     <div>
       <SideBar />

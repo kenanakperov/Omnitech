@@ -9,6 +9,8 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
+        calendar:
+          "border border-input bg-background hover:bg-accent hover:text-accent-foreground w-80",
         whitebtn:
           "border border-input bg-background hover:bg-accent hover:text-accent-foreground py-2 px-4 mr-2 ml-2",
         prevNextBtn:

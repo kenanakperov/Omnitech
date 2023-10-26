@@ -14,7 +14,7 @@
         font-size: 16px;
         font-style: normal;
         font-weight: 600;
-        line-height: 24px; /* 150% */
+        line-height: 24px;
       }
       .detailsStatus {
         display: flex;
@@ -46,7 +46,7 @@
     display: flex;
     .detailsContentL {
       width: 646px;
-      height: 457px;
+      // height: 457px;
       display: flex;
       flex-direction: column;
       padding: 12px;
@@ -154,6 +154,7 @@
       height: 457px;
     }
     .detailsContentR {
+      position: relative;
       display: flex;
       width: 369px;
       flex-direction: column;
@@ -176,13 +177,11 @@
         .active {
           cursor: pointer;
           color: var(--color-text, #09090b);
-
-          /* text-sm/font-medium */
           font-family: Inter;
           font-size: 14px;
           font-style: normal;
           font-weight: 500;
-          line-height: 20px; /* 142.857% */
+          line-height: 20px;
         }
       }
       .taskHistory {
@@ -194,12 +193,17 @@
         align-self: stretch;
         border-radius: 8px;
         background: #fcfcfc;
+        overflow: auto;
+        height: 420px;
+        .taskHistoryCard {
+          width: 100%;
+        }
       }
       .detailsContentRWhoseDate {
         border-top-left-radius: 8px;
         border-top-right-radius: 8px;
         background: #fcfcfc;
-        width: 345px;
+        width: 100%;
         display: flex;
         justify-content: space-between;
         padding: 12px 12px 16px 12px;
@@ -230,6 +234,7 @@
         border-bottom-left-radius: 8px;
         border-bottom-right-radius: 8px;
         background: #fcfcfc;
+        width: 100%;
         padding: 0 12px 12px 12px;
         span {
           color: #84818a;
@@ -241,7 +246,11 @@
         }
       }
       .detailsContentAddComment {
-        margin-top: 139px;
+        // margin-top: 139px;
+        position: absolute;
+        width: 369px;
+        bottom: 0;
+
         input {
           display: flex;
           height: 110px;
@@ -259,7 +268,7 @@
       }
     }
   }
-  .detailsContentEnd{
+  .detailsContentEnd {
     display: flex;
     justify-content: space-between;
   }
@@ -341,7 +350,7 @@
   .whoseTextSenderTT {
     display: flex;
     width: 401px;
-    height: 164px;
+    // height: 164px;
     padding: 16px;
     flex-direction: column;
 

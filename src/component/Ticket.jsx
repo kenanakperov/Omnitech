@@ -1,4 +1,11 @@
 import React, { useState } from "react";
+
+// ? UI Components
+
+import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs";
+import { Textarea } from "../components/ui/textarea";
+import { Label } from "../components/ui/label";
+import { Button } from "../components/ui/button";
 import {
   Select,
   SelectContent,
@@ -8,8 +15,9 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
-import { Tabs, TabsList, TabsTrigger } from "../components/ui/tabs";
-import { Textarea } from "../components/ui/textarea";
+
+// ? SVG'S
+
 import {
   ArrowDown,
   Close,
@@ -20,9 +28,10 @@ import {
   YellowCircle,
 } from "../svg";
 
+// ? Components
+
 import TaskHistoryChanger from "./TaskHistoryChanger";
-import { Label } from "../components/ui/label";
-import { Button } from "../components/ui/button";
+import Comment from "./Comment";
 
 const Ticket = (circle) => {
   const [hideDetails, setHideDetails] = useState("false");
@@ -34,6 +43,233 @@ const Ticket = (circle) => {
   const [arrowhide, setArrowHide] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [toMe, setToMe] = useState("Mənə təyin et");
+
+  let [ticketData, setTicketData] = useState({
+    text: "",
+  });
+
+  const handlechange = (e) => {
+    let value = e.target.value;
+    let name = e.target.name;
+
+    setTicketData((prevalue) => {
+      return {
+        ...prevalue,
+        [name]: value,
+      };
+    });
+  };
+  const history = [
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+    {
+      id: 0,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
+  ];
+  const commentData = [
+    {
+      id: 0,
+      author: {
+        id: 0,
+        username:
+          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      text: "string",
+      is_public: true,
+      created_at: "2023-10-23T12:46:19.083Z",
+      updated_at: "2023-10-23T12:46:19.083Z",
+    },
+    {
+      id: 0,
+      author: {
+        id: 0,
+        username:
+          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      text: "string",
+      is_public: true,
+      created_at: "2023-10-23T12:46:19.083Z",
+      updated_at: "2023-10-23T12:46:19.083Z",
+    },
+    {
+      id: 0,
+      author: {
+        id: 0,
+        username:
+          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      text: "string",
+      is_public: true,
+      created_at: "2023-10-23T12:46:19.083Z",
+      updated_at: "2023-10-23T12:46:19.083Z",
+    },
+    {
+      id: 0,
+      author: {
+        id: 0,
+        username:
+          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      text: "string",
+      is_public: true,
+      created_at: "2023-10-23T12:46:19.083Z",
+      updated_at: "2023-10-23T12:46:19.083Z",
+    },
+    {
+      id: 0,
+      author: {
+        id: 0,
+        username:
+          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      text: "string",
+      is_public: true,
+      created_at: "2023-10-23T12:46:19.083Z",
+      updated_at: "2023-10-23T12:46:19.083Z",
+    },
+  ];
 
   const inputHide = () => {
     if (rightArrow === "false") {
@@ -71,6 +307,10 @@ const Ticket = (circle) => {
       setHideDetails("false");
     }
   };
+  const setBtn = () => {
+    console.log(ticketData);
+    setHideDetails("false");
+  };
   let circleColor;
   if (circle.circle === "blue") {
     circleColor = <BlueCircle />;
@@ -81,6 +321,30 @@ const Ticket = (circle) => {
   if (circle.circle === "yellow") {
     circleColor = <YellowCircle />;
   }
+  // const data = [
+  //   {
+  //     id: 0,
+  //     title: "string",
+  //     description: "string",
+  //     category: {
+  //       id: 0,
+  //       name: "string",
+  //       description: "string",
+  //     },
+  //     owner: {
+  //       id: 0,
+  //       username: "QYvTwEMbNqUbIF98+HU6jQnPbJ8Eldep4em+RS",
+  //       email: "user@example.com",
+  //       first_name: "string",
+  //       last_name: "string",
+  //     },
+  //     owner_group: {
+  //       id: 0,
+  //       name: "string",
+  //     },
+  //     state: "string",
+  //   },
+  // ];
   return (
     <>
       <div className="ticket">
@@ -130,11 +394,11 @@ const Ticket = (circle) => {
                     <span>Yeni</span>
                     <ArrowDown />
                   </div>
-                  <span>Tiket# 5</span>
-                  <span>Kassa</span>
+                  <span>{circle.ticketNum}</span>
+                  <span>{circle.content}</span>
                 </div>
                 <div className="detailsTitleR">
-                  <span>Yaradıldı: 01/09/23 - 12:45</span>
+                  <span>{circle.date}</span>
                   <div className="closeIcon" onClick={details}>
                     <Close />
                   </div>
@@ -143,25 +407,18 @@ const Ticket = (circle) => {
               <div className="detailsContent">
                 <div className="detailsContentL">
                   <div className="contentLTitle">
-                    <span>Orxan Qasımov</span>
-                    <span>Mothercare</span>
-                    <span>+994-XX-XXX-XX-XX</span>
+                    <span>{circle.name}</span>
+                    <span>{circle.companyName}</span>
+                    <span>{circle.phoneNum}</span>
                   </div>
                   <div className="contentCommentArea">
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.Lorem ipsum dolor sit amet, consectetur adipiscing
-                      elit.
-                    </span>
+                    <span>{circle.comment}</span>
                     <Pen />
                   </div>
                   <div className="contentKassaNum">
-                    <span>Kassa nömrəsi: 0000000</span>
+                    <span>Kassa nömrəsi: {circle.kassaID}</span>
                     <hr />
-                    <span>VÖEN: 0000000</span>
+                    <span>VÖEN: {circle.voen}</span>
                   </div>
                   <hr />
                 </div>
@@ -178,50 +435,38 @@ const Ticket = (circle) => {
                     </span>
                   </div>
                   <div className={historyCommentChanger}>
-                    <div className="detailsContentRWhoseDate">
-                      <div className="detailsContentRWhose">
-                        <img src={require("../images/Avatarmen.png")} alt="" />
-                        <span>Diana</span>
-                      </div>
-                      <span>01/09/23 - 12:45</span>
-                    </div>
-                    <div className="detailsContentRComment">
-                      <span>
-                        Lorem ipsum dolor sit amet consectetur. Arcu nibh amet
-                        sagittis magna risus egestas. Orci eget vulputate
-                        aliquam in urna. Faucibus posuere leo ultricies lectus.
-                        Neque in faucibus sit adipiscing.
-                      </span>
+                    <div className="ticketsOverflow">
+                      {commentData.map((item, index) => {
+                        return (
+                          <Comment
+                            key={index}
+                            name={item.author.first_name}
+                            text={item.text}
+                          />
+                        );
+                      })}
                     </div>
                     <div className="detailsContentAddComment">
-                      <Label htmlFor="terms">Şərh əlavə et</Label>
+                      <Label>Şərh əlavə et</Label>
                       <Textarea
+                        onChange={handlechange}
+                        name="text"
                         className="resize-none mt-1"
                         placeholder="Şərh yazın.."
                       />
                     </div>
                   </div>
                   <div className={changeTaskHistory}>
-                    <TaskHistoryChanger
-                      name="Diana"
-                      status="Updated task status"
-                      date="01/09/23 - 12:45"
-                    />
-                    <TaskHistoryChanger
-                      name="Diana"
-                      status="Added a comment"
-                      date="01/09/23 - 12:33"
-                    />
-                    <TaskHistoryChanger
-                      name="Diana"
-                      status="Assign to Dima"
-                      date="01/09/23 - 12:28"
-                    />
-                    <TaskHistoryChanger
-                      name="Diana"
-                      status="Assign to Satış group"
-                      date="01/09/23 - 12:24"
-                    />
+                    {history.map((item, index) => {
+                      return (
+                        <TaskHistoryChanger
+                          key={index}
+                          name={item.owner.first_name}
+                          status="Updated task status"
+                          date="01/09/23 - 12:45"
+                        />
+                      );
+                    })}
                   </div>
                 </div>
               </div>
@@ -229,7 +474,7 @@ const Ticket = (circle) => {
               <div className="detailsContentEnd">
                 <div className="contentWhose">
                   <img src={require("../images/Avatar.png")} alt="" />
-                  <span>Diana</span>
+                  <span>{circle.name}</span>
                   <RightArrow />
                   <Tabs defaultValue="account" className="ml-4 mr-4">
                     <TabsList>
@@ -255,12 +500,13 @@ const Ticket = (circle) => {
                           <SelectItem value="texniki">Texniki</SelectItem>
                           <SelectItem value="yığım">Yığım</SelectItem>
                           <SelectItem value="satış">Satış</SelectItem>
+                          <SelectItem value="IT">IT</SelectItem>
                         </SelectGroup>
                       </SelectContent>
                     </Select>
                   </div>
                 </div>
-                <div onClick={details}>
+                <div onClick={setBtn}>
                   <Button>Yadda saxla</Button>
                 </div>
               </div>

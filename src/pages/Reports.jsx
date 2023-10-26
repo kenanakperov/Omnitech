@@ -1,27 +1,24 @@
-// import { useState } from "react";
+import { useState } from "react";
+
 import SideBar from "../component/SideBar";
 import TopBar from "../component/TopBar";
-import { DateI, SendIcon } from "../svg";
+
+import {  SendIcon } from "../svg";
+import { format } from "date-fns";
+import { Calendar as CalendarIcon } from "lucide-react";
+import { Calendar } from "../components/ui/calendar";
 import { Button } from "../components/ui/button";
-// import { Label } from "../components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "../components/ui/popover";
+import { cn } from "../lib/utils";
 
 const Reports = () => {
-  // const [activeNum, setActiveNum] = useState("activeNum");
-  // const [nonActiveNum, setNonActiveNum] = useState("nonActiveNum");
+  window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
 
-  // const activeChanger = () => {
-  //   if (activeNum === "nonActiveNum") {
-  //     setActiveNum("activeNum");
-  //     setNonActiveNum("nonActiveNum");
-  //   }
-  // };
-  // const activeChanger1 = () => {
-  //   if (nonActiveNum === "nonActiveNum") {
-  //     setActiveNum("nonActiveNum");
-  //     setNonActiveNum("activeNum");
-  //   }
-  // };
-
+    const [date, setDate] = useState()
   return (
     <div>
       <SideBar />
@@ -31,10 +28,28 @@ const Reports = () => {
           <div className="reportsTitle">
             <h2>Reportlar</h2>
             <div className="reportsTitleR">
-              <Button variant="whitebtn">
-                <span className="newTicketTextDate">Tarix</span>
-                <DateI />
-              </Button>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"calendar"}
+                    className={cn(
+                      
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    initialFocus
+                  />
+                </PopoverContent>
+              </Popover>
               <Button variant="mybtn2">
                 <SendIcon />
                 <span className="newTicketText">Export</span>
