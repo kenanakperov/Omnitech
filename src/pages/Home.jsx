@@ -83,7 +83,7 @@ const Home = () => {
   const data = [
     {
       id: 1,
-      title: "string",
+      title: "Batareya",
       description: "string",
       category: {
         id: 0,
@@ -106,7 +106,7 @@ const Home = () => {
     },
     {
       id: 2,
-      title: "string",
+      title: "Ekran",
       description: "string",
       category: {
         id: 0,
@@ -128,7 +128,7 @@ const Home = () => {
     },
     {
       id: 3,
-      title: "string",
+      title: "Plata",
       description: "string",
       category: {
         id: 0,
@@ -172,7 +172,32 @@ const Home = () => {
       },
       state: "string",
     },
+    {
+      id: 5,
+      title: "string",
+      description: "string",
+      category: {
+        id: 0,
+        name: "string",
+        description: "string",
+      },
+      owner: {
+        id: 0,
+        username:
+          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+        email: "user@example.com",
+        first_name: "string",
+        last_name: "string",
+      },
+      owner_group: {
+        id: 0,
+        name: "string",
+      },
+      state: "string",
+    },
   ];
+  const [query, setQuery] = useState("");
+
   return (
     <div className="home">
       <SideBar />
@@ -183,7 +208,11 @@ const Home = () => {
             <div className="ticketsTitle">
               <h1>Ticketlər</h1>
               <div className="searchInp">
-                <Input size="lg" placeholder="Tiket axtar" />
+                <Input
+                  size="lg"
+                  placeholder="Tiket axtar"
+                  onChange={(event) => setQuery(event.target.value)}
+                />
               </div>
               <div className={hideButton} onClick={newTicketButton}>
                 <Button variant="default">
@@ -225,26 +254,35 @@ const Home = () => {
             </label>
           </div>
           <div className="ticketsArea">
-            {data.map((item) => {
-              return (
-                <Ticket
-                  key={item.id}
-                  circle={item.state}
-                  ticketNum={"Tiket# " + item.id}
-                  content={item.title}
-                  date="Yaradıldı: 01/09/23 - 12:55"
-                  name={item.owner.first_name + " " + item.owner.last_name}
-                  companyName="Mothercare"
-                  phoneNum="+994-XX-XXX-XX-XX"
-                  comment={item.description}
-                  kassaID="0000000"
-                  voen="0000000"
-                  // ticketFile="ticketFile"
-                  // ticketWhose={item.owner.first_name +" " +item.owner.first_name}
-                  // ticketWhoseTT="ticketWhoseTT"
-                />
-              );
-            })}
+            {data
+              .filter((item) => {
+                if (item === "") {
+                  return item;
+                } else if (
+                  item.title.toLowerCase().includes(query.toLowerCase())
+                ) {
+                  return item;
+                } else {
+                  return null;
+                }
+              })
+              .map((item) => {
+                return (
+                  <Ticket
+                    key={item.id}
+                    circle={item.state}
+                    ticketNum={"Tiket# " + item.id}
+                    content={item.title}
+                    date="Yaradıldı: 01/09/23 - 12:55"
+                    name={item.owner.first_name + " " + item.owner.last_name}
+                    companyName="Mothercare"
+                    phoneNum="+994-XX-XXX-XX-XX"
+                    comment={item.description}
+                    kassaID="0000000"
+                    voen="0000000"
+                  />
+                );
+              })}
           </div>
         </div>
         <div className={newTicketHide}>
