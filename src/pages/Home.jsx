@@ -144,7 +144,6 @@ const Home = ({ setUser }) => {
               onCheckedChange={(checked) => {
                 if (checked === true) {
                   console.log("checked");
-                  //axios get my tickets
                 }
               }}
             />
@@ -320,8 +319,18 @@ const Home = ({ setUser }) => {
           </div>
           <Button
             onClick={() => {
-              ticketData.category = salaam;
-              console.log(ticketData);
+              // ticketData.category = salaam;
+              // console.log(ticketData);
+              axios
+                .post("http://165.22.81.197:8000/api/tickets/", {
+                  title: "string",
+                  description: "string",
+                  category: 0,
+                  owner: 0,
+                })
+                .then((res) => {
+                  console.log(res);
+                });
             }}
             variant="mybtn"
             width="400px"

@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // ? UI Components
 
@@ -34,7 +34,7 @@ import TaskHistoryChanger from "./TaskHistoryChanger";
 import Comment from "./Comment";
 import axios from "axios";
 
-const Ticket = (circle) => {
+const Ticket = ( circle ) => {
   const [hideDetails, setHideDetails] = useState("false");
   const [activeFirst, setActiveFirst] = useState("active");
   const [activeSecond, setActiveSecond] = useState("nonactive");
@@ -46,15 +46,25 @@ const Ticket = (circle) => {
   const [toMe, setToMe] = useState("Mənə təyin et");
   const [commentData, setCommentData] = useState([]);
   const [commentID, setCommentID] = useState([]);
-
+  const [histories, setHistories] = useState([]);
   let [ticketData, setTicketData] = useState({
     text: "",
   });
-  // useEffect(() => {
-  //   axios(`http://165.22.81.197:8000/api/comments/`).then((res) => {
-  //     setCommentData(res.data);
-  //   });
-  // });
+  const getHistories = () => {
+    axios
+      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/history/`)
+      .then((res) => {
+        setHistories(res.data);
+      });
+  };
+  useEffect(() => {
+    getHistories();
+  }, [circle.id]);
+
+  useEffect(() => {
+    console.log(histories);
+  }, [histories]);
+
   const handlechange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -66,30 +76,30 @@ const Ticket = (circle) => {
       };
     });
   };
-  const history = [
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-  ];
+  // const history = [
+  //   {
+  //     id: 0,
+  //     title: "string",
+  //     description: "string",
+  //     category: {
+  //       id: 0,
+  //       name: "string",
+  //       description: "string",
+  //     },
+  //     owner: {
+  //       id: 0,
+  //       username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
+  //       email: "user@example.com",
+  //       first_name: "string",
+  //       last_name: "string",
+  //     },
+  //     owner_group: {
+  //       id: 0,
+  //       name: "string",
+  //     },
+  //     state: "string",
+  //   },
+  // ];
   // const commentData = [
   //   {
   //     id: 0,
@@ -297,13 +307,14 @@ const Ticket = (circle) => {
                     </div>
                   </div>
                   <div className={changeTaskHistory}>
-                    {history.map((item, index) => {
+                    {histories.map((item, index) => {
+                      const date = new Date(item.action_time).toLocaleDateString()
                       return (
                         <TaskHistoryChanger
                           key={index}
-                          name={item.owner.first_name}
-                          status="Updated task status"
-                          date="01/09/23 - 12:45"
+                          name={item.user.username}
+                          status={item.object_repr}
+                          date={date}
                         />
                       );
                     })}
