@@ -3,42 +3,32 @@ import { useNavigate } from "react-router-dom";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
-import { useEffect, useState } from "react";
-// import axios from "axios";
+import { useState } from "react";
+import axios from "axios";
 
-const Login = () => {
+const Login = ({ setUser }) => {
   const navigate = useNavigate();
   const [errormessage, setErrormessage] = useState("");
-  const [storageAcsess, setStorageAcsess] = useState("");
-
-  useEffect(() => {
-    setStorageAcsess(localStorage.getItem("token"));
-  }, []);
-  const code = {
-    username: "kenanakperov@omnitech.az",
-    password: "kenan2004",
-    access: "salamsalam",
-  };
   const [loginData, setLoginData] = useState({
     username: "",
     password: "",
   });
 
-  if (storageAcsess === code.access) {
-    navigate("/home");
-  }
-
   const sendLogin = (e) => {
-    if (
-      code.username === loginData.username &&
-      code.password === loginData.password
-    ) {
-      localStorage.setItem("token", code.access);
-      navigate("/home");
-    } else {
-      setErrormessage("Şifrə və ya mail yanlış daxil edilib!!");
-      navigate("/");
-    }
+    axios
+      .post(`http://165.22.81.197:8000/api/token/`, loginData)
+      .then((res) => {
+        if ((res.status = 200)) {
+          setUser(true);
+          navigate("/home");
+          localStorage.setItem("access", res.data.access);
+        }
+      })
+      .catch((error) => {
+        if (error.response.request.status === 401) {
+          setErrormessage("Login və ya şifrə yanlışdır!");
+        }
+      });
   };
   const handleChange = (e) => {
     let value = e.target.value;

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {  useState } from "react";
 
 // ? UI Components
 
@@ -32,6 +32,7 @@ import {
 
 import TaskHistoryChanger from "./TaskHistoryChanger";
 import Comment from "./Comment";
+import axios from "axios";
 
 const Ticket = (circle) => {
   const [hideDetails, setHideDetails] = useState("false");
@@ -43,11 +44,17 @@ const Ticket = (circle) => {
   const [arrowhide, setArrowHide] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [toMe, setToMe] = useState("Mənə təyin et");
+  const [commentData, setCommentData] = useState([]);
+  const [commentID, setCommentID] = useState([]);
 
   let [ticketData, setTicketData] = useState({
     text: "",
   });
-
+  // useEffect(() => {
+  //   axios(`http://165.22.81.197:8000/api/comments/`).then((res) => {
+  //     setCommentData(res.data);
+  //   });
+  // });
   const handlechange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -82,194 +89,24 @@ const Ticket = (circle) => {
       },
       state: "string",
     },
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 0,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
   ];
-  const commentData = [
-    {
-      id: 0,
-      author: {
-        id: 0,
-        username:
-          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      text: "string",
-      is_public: true,
-      created_at: "2023-10-23T12:46:19.083Z",
-      updated_at: "2023-10-23T12:46:19.083Z",
-    },
-    {
-      id: 0,
-      author: {
-        id: 0,
-        username:
-          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      text: "string",
-      is_public: true,
-      created_at: "2023-10-23T12:46:19.083Z",
-      updated_at: "2023-10-23T12:46:19.083Z",
-    },
-    {
-      id: 0,
-      author: {
-        id: 0,
-        username:
-          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      text: "string",
-      is_public: true,
-      created_at: "2023-10-23T12:46:19.083Z",
-      updated_at: "2023-10-23T12:46:19.083Z",
-    },
-    {
-      id: 0,
-      author: {
-        id: 0,
-        username:
-          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      text: "string",
-      is_public: true,
-      created_at: "2023-10-23T12:46:19.083Z",
-      updated_at: "2023-10-23T12:46:19.083Z",
-    },
-    {
-      id: 0,
-      author: {
-        id: 0,
-        username:
-          "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      text: "string",
-      is_public: true,
-      created_at: "2023-10-23T12:46:19.083Z",
-      updated_at: "2023-10-23T12:46:19.083Z",
-    },
-  ];
+  // const commentData = [
+  //   {
+  //     id: 0,
+  //     author: {
+  //       id: 0,
+  //       username:
+  //         "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
+  //       email: "user@example.com",
+  //       first_name: "string",
+  //       last_name: "string",
+  //     },
+  //     text: "string",
+  //     is_public: true,
+  //     created_at: "2023-10-23T12:46:19.083Z",
+  //     updated_at: "2023-10-23T12:46:19.083Z",
+  //   },
+  // ];
 
   const inputHide = () => {
     if (rightArrow === "false") {
@@ -287,6 +124,9 @@ const Ticket = (circle) => {
     setToMe("");
   };
   const activeNonActive = () => {
+    axios(`http://165.22.81.197:8000/api/comments/${commentID}`).then((res) => {
+      setCommentData(res.data);
+    });
     if (activeFirst === "active") {
       setActiveFirst("nonactive");
       setActiveSecond("active");
@@ -440,7 +280,7 @@ const Ticket = (circle) => {
                         return (
                           <Comment
                             key={index}
-                            name={item.author.first_name}
+                            name={item.author.username}
                             text={item.text}
                           />
                         );

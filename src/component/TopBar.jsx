@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUp, Chime, LogOutI, MoonI } from "../svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TopBar = () => {
+const TopBar = ({setUser}) => {
   const navigate = useNavigate();
   const [hideDrop, setHideDrop] = useState("false");
   const [logOutBtn, setLogOutBtn] = useState("true");
@@ -60,7 +60,8 @@ const TopBar = () => {
           <div
             className={logout}
             onClick={() => {
-              localStorage.removeItem("token");
+              localStorage.removeItem("access");
+              setUser(false)
               navigate("/");
             }}
           >

@@ -1,36 +1,45 @@
-import { Route, Routes, useNavigate } from "react-router-dom";
+import { Navigate, Route, Routes } from "react-router-dom";
 import Home from "./pages/Home";
 import Reports from "./pages/Reports";
 import FAQ from "./pages/FAQ";
 import Login from "./pages/Login";
-import { useEffect } from "react";
-import AdminHome from "./pages/AdminHome";
-// import Users from "./pages/Users";
+import { useEffect, useState } from "react";
+import jwt_decode from "jwt-decode";
 
 function App() {
-  const navigate = useNavigate();
-  const code = {
-    username: "kenanakperov@omnitech.az",
-    password: "kenan2004",
-    access: "salamsalam",
-  };
+  const [user, setUser] = useState(null);
   useEffect(() => {
-    if (localStorage.getItem("token") === code.access) {
-    } else {
-      navigate("/");
+    const token = localStorage.getItem("access");
+    if (token != null) {
+      jwt_decode(token);
+      setUser(true);
     }
-  }
-  // , []
-  );
+  }, [user]);
   return (
     <div className="App">
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/home" element={<Home />} />
-        <Route path="/reports" element={<Reports />} />
-        <Route path="/FAQ" element={<FAQ />} />
-        <Route path="/adminHome" element={<AdminHome />} />
-        {/* <Route path="/users" element={<Users />} /> */}
+        <Route
+          path="/"
+          element={user ? <Navigate to="/home" /> : <Login setUser={setUser} />}
+        />
+        <Route
+          path="/home"
+          element={
+            user ? (
+              <Home setUser={setUser} />
+            ) : (
+              <Navigate to="/" setUser={setUser} />
+            )
+          }
+        />
+        <Route
+          path="/reports"
+          element={user ? <Reports setUser={setUser} /> : <Navigate to="/" />}
+        />
+        <Route
+          path="/FAQ"
+          element={user ? <FAQ setUser={setUser} /> : <Navigate to="/" />}
+        />
       </Routes>
     </div>
   );

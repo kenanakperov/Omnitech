@@ -17,14 +17,19 @@ import {
   SelectTrigger,
   SelectValue,
 } from "../components/ui/select";
+import { useEffect } from "react";
+import axios from "axios";
 
-const Home = () => {
+const Home = ({ setUser }) => {
   // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const [hideClass, setHideClass] = useState("ticketFilter");
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
   const [salaam, setsalaam] = useState("");
-  let [ticketData, setTicketData] = useState({
+  const [data, setData] = useState([]);
+  const [dataCategories, setDataCategories] = useState([]);
+
+  const [ticketData, setTicketData] = useState({
     fullName: "",
     voen: "",
     kassaId: "",
@@ -46,29 +51,14 @@ const Home = () => {
       };
     });
   };
-
-  const dataCategories = [
-    {
-      id: 0,
-      name: "salam",
-      description: "string",
-    },
-    {
-      id: 1,
-      name: "salamm",
-      description: "string",
-    },
-    {
-      id: 2,
-      name: "salammm",
-      description: "string",
-    },
-    {
-      id: 3,
-      name: "salammmm",
-      description: "string",
-    },
-  ];
+  useEffect(() => {
+    axios("http://165.22.81.197:8000/api/tickets/").then((res) => {
+      setData(res.data);
+    });
+    axios("http://165.22.81.197:8000/api/categories/").then(res=>{
+      setDataCategories(res.data);
+    })
+  },[]);
   const newTicketButton = () => {
     if (hideClass === "false") {
       setHideClass("ticketFilter");
@@ -80,128 +70,37 @@ const Home = () => {
       setHideButton("false");
     }
   };
-  const data = [
-    {
-      id: 1,
-      title: "Batareya",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username:
-          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 2,
-      title: "Ekran",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username: "n7BY1AO1B8i0R8wer",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 3,
-      title: "Plata",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username:
-          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 4,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username:
-          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-    {
-      id: 5,
-      title: "string",
-      description: "string",
-      category: {
-        id: 0,
-        name: "string",
-        description: "string",
-      },
-      owner: {
-        id: 0,
-        username:
-          "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-        email: "user@example.com",
-        first_name: "string",
-        last_name: "string",
-      },
-      owner_group: {
-        id: 0,
-        name: "string",
-      },
-      state: "string",
-    },
-  ];
+  // const data = [
+  //   {
+  //     id: 1,
+  //     title: "Batareya",
+  //     description: "string",
+  //     category: {
+  //       id: 0,
+  //       name: "string",
+  //       description: "string",
+  //     },
+  //     owner: {
+  //       id: 0,
+  //       username:
+  //         "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
+  //       email: "user@example.com",
+  //       first_name: "string",
+  //       last_name: "string",
+  //     },
+  //     owner_group: {
+  //       id: 0,
+  //       name: "string",
+  //     },
+  //     state: "string",
+  //   }
+  // ];
   const [query, setQuery] = useState("");
 
   return (
     <div className="home">
       <SideBar />
-      <TopBar />
+      <TopBar setUser={setUser} />
       <div className="tickets">
         <div className="ticketsContent">
           <div className="salamTT">
@@ -270,14 +169,15 @@ const Home = () => {
                 return (
                   <Ticket
                     key={item.id}
-                    circle={item.state}
+                    id={item.id}
+                    circle={item.state.name}
                     ticketNum={"Tiket# " + item.id}
                     content={item.title}
-                    date="Yaradıldı: 01/09/23 - 12:55"
-                    name={item.owner.first_name + " " + item.owner.last_name}
-                    companyName="Mothercare"
-                    phoneNum="+994-XX-XXX-XX-XX"
-                    comment={item.description}
+                    // date="Yaradıldı: 01/09/23 - 12:55"
+                    // name={item.owner.first_name + " " + item.owner.last_name}
+                    // companyName="Mothercare"
+                    // phoneNum="+994-XX-XXX-XX-XX"
+                    // comment={item.description}
                     kassaID="0000000"
                     voen="0000000"
                   />
