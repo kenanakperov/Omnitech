@@ -71,7 +71,7 @@ const Ticket = ( circle ) => {
   }, [circle.id]);
 
   useEffect(() => {
-    console.log(histories);
+    setHistories(histories);
   }, [histories]);
 
   const handlechange = (e) => {
@@ -122,7 +122,6 @@ const Ticket = ( circle ) => {
     }
   };
   const setBtn = () => {
-    console.log(ticketData);
     setHideDetails("false");
   };
   let circleColor;
