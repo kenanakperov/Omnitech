@@ -44,9 +44,10 @@ const Ticket = ( circle ) => {
   const [arrowhide, setArrowHide] = useState("");
   const [selectValue, setSelectValue] = useState("");
   const [toMe, setToMe] = useState("Mənə təyin et");
-  const [commentData, setCommentData] = useState([]);
-  const [commentID, setCommentID] = useState([]);
+  // const [commentData, setCommentData] = useState([]);
   const [histories, setHistories] = useState([]);
+  const [comments, setComments] = useState([]);
+
   let [ticketData, setTicketData] = useState({
     text: "",
   });
@@ -57,8 +58,16 @@ const Ticket = ( circle ) => {
         setHistories(res.data);
       });
   };
+  const getComments = () => {
+    // axios
+    //   .get(`http://165.22.81.197:8000/api/comments/${circle.id}`)
+    //   .then((res) => {
+    //     setComments(res.data);
+    //   });
+  };
   useEffect(() => {
     getHistories();
+    getComments()
   }, [circle.id]);
 
   useEffect(() => {
@@ -76,48 +85,6 @@ const Ticket = ( circle ) => {
       };
     });
   };
-  // const history = [
-  //   {
-  //     id: 0,
-  //     title: "string",
-  //     description: "string",
-  //     category: {
-  //       id: 0,
-  //       name: "string",
-  //       description: "string",
-  //     },
-  //     owner: {
-  //       id: 0,
-  //       username: "4zcLIHnEHyFs7jSlZk+YaltA+DO7h10oQ",
-  //       email: "user@example.com",
-  //       first_name: "string",
-  //       last_name: "string",
-  //     },
-  //     owner_group: {
-  //       id: 0,
-  //       name: "string",
-  //     },
-  //     state: "string",
-  //   },
-  // ];
-  // const commentData = [
-  //   {
-  //     id: 0,
-  //     author: {
-  //       id: 0,
-  //       username:
-  //         "ZCeKvq06h86rngQ@zUAdjISQ25@kQIOZ16WC@NwEf8BIGo8s.4rU9yGdfRR7MLLKf9ye3@QKf.uD.i.QM1VHiAlWW",
-  //       email: "user@example.com",
-  //       first_name: "string",
-  //       last_name: "string",
-  //     },
-  //     text: "string",
-  //     is_public: true,
-  //     created_at: "2023-10-23T12:46:19.083Z",
-  //     updated_at: "2023-10-23T12:46:19.083Z",
-  //   },
-  // ];
-
   const inputHide = () => {
     if (rightArrow === "false") {
       setRightArrow("true");
@@ -134,9 +101,6 @@ const Ticket = ( circle ) => {
     setToMe("");
   };
   const activeNonActive = () => {
-    axios(`http://165.22.81.197:8000/api/comments/${commentID}`).then((res) => {
-      setCommentData(res.data);
-    });
     if (activeFirst === "active") {
       setActiveFirst("nonactive");
       setActiveSecond("active");
@@ -171,30 +135,6 @@ const Ticket = ( circle ) => {
   if (circle.circle === "yellow") {
     circleColor = <YellowCircle />;
   }
-  // const data = [
-  //   {
-  //     id: 0,
-  //     title: "string",
-  //     description: "string",
-  //     category: {
-  //       id: 0,
-  //       name: "string",
-  //       description: "string",
-  //     },
-  //     owner: {
-  //       id: 0,
-  //       username: "QYvTwEMbNqUbIF98+HU6jQnPbJ8Eldep4em+RS",
-  //       email: "user@example.com",
-  //       first_name: "string",
-  //       last_name: "string",
-  //     },
-  //     owner_group: {
-  //       id: 0,
-  //       name: "string",
-  //     },
-  //     state: "string",
-  //   },
-  // ];
   return (
     <>
       <div className="ticket">
@@ -286,15 +226,15 @@ const Ticket = ( circle ) => {
                   </div>
                   <div className={historyCommentChanger}>
                     <div className="ticketsOverflow">
-                      {commentData.map((item, index) => {
+                      {/* {comments.map((item, index) => {
                         return (
                           <Comment
-                            key={index}
+                            key={item.id}
                             name={item.author.username}
                             text={item.text}
                           />
                         );
-                      })}
+                      })} */}
                     </div>
                     <div className="detailsContentAddComment">
                       <Label>Şərh əlavə et</Label>
@@ -308,7 +248,9 @@ const Ticket = ( circle ) => {
                   </div>
                   <div className={changeTaskHistory}>
                     {histories.map((item, index) => {
-                      const date = new Date(item.action_time).toLocaleDateString()
+                      const date = new Date(
+                        item.action_time
+                      ).toLocaleDateString();
                       return (
                         <TaskHistoryChanger
                           key={index}

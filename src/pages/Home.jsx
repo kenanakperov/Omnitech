@@ -28,18 +28,19 @@ const Home = ({ setUser }) => {
   const [salaam, setsalaam] = useState("");
   const [data, setData] = useState([]);
   const [dataCategories, setDataCategories] = useState([]);
+  const [refresh, setRefresh] = useState(true);
 
   const [ticketData, setTicketData] = useState({
-    fullName: "",
-    voen: "",
-    kassaId: "",
-    company: "",
-    other: "",
-    startNum: "",
-    num: "",
+    title: "", //fullname olmalidi
+    // voen: "",
+    // kassaId: "",
+    // company: "",
+    description: "",
+    // startNum: "",
+    // num: "",
     category: "",
   });
-
+  // const token = localStorage.getItem("access");
   const handleChange = (e) => {
     let value = e.target.value;
     let name = e.target.name;
@@ -55,10 +56,10 @@ const Home = ({ setUser }) => {
     axios("http://165.22.81.197:8000/api/tickets/").then((res) => {
       setData(res.data);
     });
-    axios("http://165.22.81.197:8000/api/categories/").then(res=>{
+    axios("http://165.22.81.197:8000/api/categories/").then((res) => {
       setDataCategories(res.data);
-    })
-  },[]);
+    });
+  }, [refresh]);
   const newTicketButton = () => {
     if (hideClass === "false") {
       setHideClass("ticketFilter");
@@ -70,31 +71,6 @@ const Home = ({ setUser }) => {
       setHideButton("false");
     }
   };
-  // const data = [
-  //   {
-  //     id: 1,
-  //     title: "Batareya",
-  //     description: "string",
-  //     category: {
-  //       id: 0,
-  //       name: "string",
-  //       description: "string",
-  //     },
-  //     owner: {
-  //       id: 0,
-  //       username:
-  //         "74DNICdBGPGrMD_gQVZhOy3DvNhQzogyufzDI@r7r2EpYqoFjg29vWbuX.G6CTvewxh_CIIFHe5qNo8MP0w0WTRMgNgVT4ulIU8",
-  //       email: "user@example.com",
-  //       first_name: "string",
-  //       last_name: "string",
-  //     },
-  //     owner_group: {
-  //       id: 0,
-  //       name: "string",
-  //     },
-  //     state: "string",
-  //   }
-  // ];
   const [query, setQuery] = useState("");
 
   return (
@@ -172,11 +148,11 @@ const Home = ({ setUser }) => {
                     circle={item.state.name}
                     ticketNum={"Tiket# " + item.id}
                     content={item.title}
+                    comment={item.description}
                     // date="Yaradıldı: 01/09/23 - 12:55"
                     // name={item.owner.first_name + " " + item.owner.last_name}
                     // companyName="Mothercare"
                     // phoneNum="+994-XX-XXX-XX-XX"
-                    // comment={item.description}
                     kassaID="0000000"
                     voen="0000000"
                   />
@@ -209,7 +185,7 @@ const Home = ({ setUser }) => {
             </div>
             <Input
               onChange={handleChange}
-              name="fullName"
+              name="title"
               placeholder="Ad Soyad"
             />
           </div>
@@ -296,7 +272,7 @@ const Home = ({ setUser }) => {
                 <SelectGroup>
                   {dataCategories.map((item, index) => {
                     return (
-                      <SelectItem key={item.id} value={item.name}>
+                      <SelectItem key={item.id} value={item.id}>
                         {item.name}
                       </SelectItem>
                     );
@@ -311,7 +287,7 @@ const Home = ({ setUser }) => {
             </div>
             <Textarea
               onChange={handleChange}
-              name="other"
+              name="description"
               className="resize-none"
               placeholder="Type your message here."
               id="message"
@@ -319,16 +295,19 @@ const Home = ({ setUser }) => {
           </div>
           <Button
             onClick={() => {
-              // ticketData.category = salaam;
-              // console.log(ticketData);
+              ticketData.category = salaam;
               axios
-                .post("http://165.22.81.197:8000/api/tickets/", {
-                  title: "string",
-                  description: "string",
-                  category: 0,
-                  owner: 0,
-                })
+                .post(
+                  "http://165.22.81.197:8000/api/tickets/",
+                  ticketData
+                  // {
+                  //   headers: {
+                  //     Authorization: Bearer ${token},
+                  //   },
+                  // }
+                )
                 .then((res) => {
+                  setRefresh(!refresh)
                   console.log(res);
                 });
             }}
