@@ -34,7 +34,7 @@ import TaskHistoryChanger from "./TaskHistoryChanger";
 import Comment from "./Comment";
 import axios from "axios";
 
-const Ticket = ( circle ) => {
+const Ticket = (circle) => {
   const [hideDetails, setHideDetails] = useState("false");
   const [activeFirst, setActiveFirst] = useState("active");
   const [activeSecond, setActiveSecond] = useState("nonactive");
@@ -47,8 +47,10 @@ const Ticket = ( circle ) => {
   // const [commentData, setCommentData] = useState([]);
   const [histories, setHistories] = useState([]);
   const [comments, setComments] = useState([]);
+  const [refresh, setRefresh] = useState(true);
 
   let [ticketData, setTicketData] = useState({
+    ticket: circle.id,
     text: "",
   });
   const getHistories = () => {
@@ -67,8 +69,12 @@ const Ticket = ( circle ) => {
   };
   useEffect(() => {
     getHistories();
-    getComments()
+    getComments();
   }, [circle.id]);
+
+  useEffect(() => {
+    getComments();
+  }, [refresh]);
 
   useEffect(() => {
     setHistories(histories);
@@ -122,7 +128,15 @@ const Ticket = ( circle ) => {
     }
   };
   const setBtn = () => {
-    setHideDetails("false");
+    if (ticketData.text.length !== 0) {
+      axios
+        .post("http://165.22.81.197:8000/api/comments/", ticketData)
+        .then((res) => {
+          setRefresh(!refresh);
+          console.log(res);
+        });
+    }
+    // setHideDetails("false");
   };
   let circleColor;
   if (circle.circle === "blue") {
@@ -196,12 +210,12 @@ const Ticket = ( circle ) => {
               <div className="detailsContent">
                 <div className="detailsContentL">
                   <div className="contentLTitle">
-                    <span>{circle.name}</span>
-                    <span>{circle.companyName}</span>
-                    <span>{circle.phoneNum}</span>
+                    <span>Kenan</span>
+                    <span>Omnitech</span>
+                    <span>+994559994142</span>
                   </div>
                   <div className="contentCommentArea">
-                    <span>{circle.comment}</span>
+                    <span>{circle.description}</span>
                     <Pen />
                   </div>
                   <div className="contentKassaNum">
@@ -266,7 +280,7 @@ const Ticket = ( circle ) => {
               <div className="detailsContentEnd">
                 <div className="contentWhose">
                   <img src={require("../images/Avatar.png")} alt="" />
-                  <span>{circle.name}</span>
+                  <span>Diana</span>
                   <RightArrow />
                   <Tabs defaultValue="account" className="ml-4 mr-4">
                     <TabsList>

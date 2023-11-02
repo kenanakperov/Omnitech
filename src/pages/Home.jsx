@@ -2,7 +2,7 @@ import SideBar from "../component/SideBar";
 import TopBar from "../component/TopBar";
 import Ticket from "../component/Ticket";
 import { Pin, Plus, SilverClose } from "../svg";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Input } from "../components/ui/input";
 import { Button } from "../components/ui/button";
 import { Label } from "../components/ui/label";
@@ -21,7 +21,6 @@ import { useEffect } from "react";
 import axios from "axios";
 
 const Home = ({ setUser }) => {
-  // window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
   const [hideClass, setHideClass] = useState("ticketFilter");
   const [newTicketHide, setNewTicketHide] = useState("false");
   const [hideButton, setHideButton] = useState("");
@@ -29,7 +28,6 @@ const Home = ({ setUser }) => {
   const [data, setData] = useState([]);
   const [dataCategories, setDataCategories] = useState([]);
   const [refresh, setRefresh] = useState(true);
-
   const [ticketData, setTicketData] = useState({
     title: "", //fullname olmalidi
     // voen: "",
@@ -40,6 +38,21 @@ const Home = ({ setUser }) => {
     // num: "",
     category: "",
   });
+  const ref = useRef(null);
+  const ref1 = useRef(null);
+  const ref2 = useRef(null);
+  const ref3 = useRef(null);
+  const ref4 = useRef(null);
+  const ref5 = useRef(null);
+
+  const handleClick = () => {
+    ref.current.value = "";
+    ref1.current.value = "";
+    ref2.current.value = "";
+    ref3.current.value = "";
+    ref4.current.value = "";
+    ref5.current.value = "";
+  };
   // const token = localStorage.getItem("access");
   const handleChange = (e) => {
     let value = e.target.value;
@@ -187,13 +200,19 @@ const Home = ({ setUser }) => {
               onChange={handleChange}
               name="title"
               placeholder="Ad Soyad"
+              ref={ref}
             />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
               <Label>VÖEN </Label>
             </div>
-            <Input name="voen" onChange={handleChange} placeholder="000 000" />
+            <Input
+              name="voen"
+              onChange={handleChange}
+              placeholder="000 000"
+              ref={ref1}
+            />
           </div>
           <div className="newTicketInpBox">
             <div className="mb-1">
@@ -208,6 +227,7 @@ const Home = ({ setUser }) => {
               onChange={handleChange}
               name="kassaId"
               placeholder="000 000"
+              ref={ref2}
             />
           </div>
           <div className="newTicketInpBox">
@@ -223,6 +243,7 @@ const Home = ({ setUser }) => {
               onChange={handleChange}
               name="company"
               placeholder="Şirkət"
+              ref={ref3}
             />
           </div>
           <div className="phoneNumInp">
@@ -252,6 +273,7 @@ const Home = ({ setUser }) => {
                 onChange={handleChange}
                 type="number"
                 placeholder="000 00 00"
+                ref={ref4}
               />
             </div>
           </div>
@@ -272,7 +294,7 @@ const Home = ({ setUser }) => {
                 <SelectGroup>
                   {dataCategories.map((item, index) => {
                     return (
-                      <SelectItem key={item.id} value={item.id}>
+                      <SelectItem key={item.id} value={item.id + 1}>
                         {item.name}
                       </SelectItem>
                     );
@@ -291,6 +313,7 @@ const Home = ({ setUser }) => {
               className="resize-none"
               placeholder="Type your message here."
               id="message"
+              ref={ref5}
             />
           </div>
           <Button
@@ -307,10 +330,11 @@ const Home = ({ setUser }) => {
                   // }
                 )
                 .then((res) => {
-                  setRefresh(!refresh)
-                  console.log(res);
+                  setRefresh(!refresh);
+                  handleClick();
                 });
             }}
+            type="submit"
             variant="mybtn"
             width="400px"
           >
