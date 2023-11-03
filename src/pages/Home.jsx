@@ -162,6 +162,7 @@ const Home = ({ setUser }) => {
                     ticketNum={"Tiket# " + item.id}
                     content={item.title}
                     comment={item.description}
+                    state={item.state}
                     // date="Yaradıldı: 01/09/23 - 12:55"
                     // name={item.owner.first_name + " " + item.owner.last_name}
                     // companyName="Mothercare"

@@ -18,11 +18,18 @@
       }
       .detailsStatus {
         display: flex;
+        position: relative;
+        cursor: pointer;
         padding: 4px 5px;
+        height: 32px;
         align-items: center;
         gap: 12px;
         border-radius: 30px;
         background: rgba(59, 138, 255, 0.2);
+        .taskStatusDrop{
+          position: absolute;
+          top: 40px;
+        }
       }
     }
     .detailsTitleR {

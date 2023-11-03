@@ -26,6 +26,7 @@ import {
   RightArrow,
   GreenCircle,
   YellowCircle,
+  ArrowUp,
 } from "../svg";
 
 // ? Components
@@ -43,10 +44,11 @@ const Ticket = (circle) => {
   const [rightArrow, setRightArrow] = useState("false");
   const [arrowhide, setArrowHide] = useState("");
   const [selectValue, setSelectValue] = useState("");
+  const [selectValueStatus, setSelectValueStatus] = useState("");
   const [toMe, setToMe] = useState("Mənə təyin et");
-  // const [commentData, setCommentData] = useState([]);
+  const [taskStatusDrop, setTaskStatusDrop] = useState("false");
   const [histories, setHistories] = useState([]);
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
   const [refresh, setRefresh] = useState(true);
 
   let [ticketData, setTicketData] = useState({
@@ -106,6 +108,20 @@ const Ticket = (circle) => {
     setArrowHide("");
     setToMe("");
   };
+  const handleChangeStatus = (value) => {
+    setSelectValueStatus(value);
+    setTaskStatusDrop("false");
+    let changeState = {
+      id: circle.id,
+      state: value,
+    };
+    axios
+      .patch(
+        `http://165.22.81.197:8000/api/tickets/${circle.id}/change_state/`,
+        changeState
+      );
+  };
+
   const activeNonActive = () => {
     if (activeFirst === "active") {
       setActiveFirst("nonactive");
@@ -192,10 +208,34 @@ const Ticket = (circle) => {
             <div className="ticketDetails">
               <div className="detailsTitle">
                 <div className="detailsTitleL">
-                  <div className="detailsStatus">
+                  <div
+                    onClick={() => {
+                      taskStatusDrop === "false"
+                        ? setTaskStatusDrop("taskStatusDrop")
+                        : setTaskStatusDrop("false");
+                    }}
+                    className="detailsStatus"
+                  >
                     <BlueCircle />
-                    <span>Yeni</span>
-                    <ArrowDown />
+                    <span className="menaxtaran">{circle.state.name}</span>
+                    {taskStatusDrop === "false" ? <ArrowDown /> : <ArrowUp />}
+
+                    <div className={taskStatusDrop}>
+                      <Select onValueChange={(e) => handleChangeStatus(e)}>
+                        <SelectTrigger className="w-[170px]">
+                          <SelectValue placeholder="Statusu dəyişin" />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectGroup>
+                            <SelectLabel>Seçin</SelectLabel>
+                            <SelectItem value="0">Unassigned</SelectItem>
+                            <SelectItem value="1">Assigned</SelectItem>
+                            <SelectItem value="2">In Progress</SelectItem>
+                            <SelectItem value="3">Done</SelectItem>
+                          </SelectGroup>
+                        </SelectContent>
+                      </Select>
+                    </div>
                   </div>
                   <span>{circle.ticketNum}</span>
                   <span>{circle.content}</span>
