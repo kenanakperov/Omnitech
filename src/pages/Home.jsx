@@ -28,6 +28,7 @@ const Home = ({ setUser }) => {
   const [data, setData] = useState([]);
   const [dataCategories, setDataCategories] = useState([]);
   const [refresh, setRefresh] = useState(true);
+
   const [ticketData, setTicketData] = useState({
     title: "", //fullname olmalidi
     // voen: "",
@@ -163,6 +164,8 @@ const Home = ({ setUser }) => {
                     content={item.title}
                     comment={item.description}
                     state={item.state}
+                    setStateRefresh={setRefresh}
+                    stateRefresh={refresh}
                     // date="Yaradıldı: 01/09/23 - 12:55"
                     // name={item.owner.first_name + " " + item.owner.last_name}
                     // companyName="Mothercare"

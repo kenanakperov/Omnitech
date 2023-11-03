@@ -119,7 +119,10 @@ const Ticket = (circle) => {
       .patch(
         `http://165.22.81.197:8000/api/tickets/${circle.id}/change_state/`,
         changeState
-      );
+      ).then(()=>{
+        circle.setStateRefresh(!circle.stateRefresh)
+        console.log(circle.stateRefresh)
+      })
   };
 
   const activeNonActive = () => {
