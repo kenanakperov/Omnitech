@@ -27,6 +27,7 @@ import {
   GreenCircle,
   YellowCircle,
   ArrowUp,
+  RedCircle,
 } from "../svg";
 
 // ? Components
@@ -119,10 +120,10 @@ const Ticket = (circle) => {
       .patch(
         `http://165.22.81.197:8000/api/tickets/${circle.id}/change_state/`,
         changeState
-      ).then(()=>{
-        circle.setStateRefresh(!circle.stateRefresh)
-        console.log(circle.stateRefresh)
-      })
+      )
+      .then(() => {
+        circle.setStateRefresh(!circle.stateRefresh);
+      });
   };
 
   const activeNonActive = () => {
@@ -158,14 +159,17 @@ const Ticket = (circle) => {
     // setHideDetails("false");
   };
   let circleColor;
-  if (circle.circle === "blue") {
+  if (circle.state.id === 3) {
     circleColor = <BlueCircle />;
   }
-  if (circle.circle === "green") {
+  if (circle.state.id === 2) {
     circleColor = <GreenCircle />;
   }
-  if (circle.circle === "yellow") {
+  if (circle.state.id === 1) {
     circleColor = <YellowCircle />;
+  }
+  if (circle.state.id === 0) {
+    circleColor = <RedCircle />;
   }
   return (
     <>
@@ -219,7 +223,7 @@ const Ticket = (circle) => {
                     }}
                     className="detailsStatus"
                   >
-                    <BlueCircle />
+                    {circleColor}
                     <span className="menaxtaran">{circle.state.name}</span>
                     {taskStatusDrop === "false" ? <ArrowDown /> : <ArrowUp />}
 

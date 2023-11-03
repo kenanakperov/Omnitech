@@ -51,17 +51,17 @@ const TopBar = ({setUser}) => {
         <div className="notification">
           <Chime />
         </div>
-        <div className="userProfile">
+        <div className="userProfile" onClick={arrowDownUp}>
           <img src={require("../images/Avatar.png")} alt="" />
           <span>Diana</span>
-          <div className="cursor-pointer" onClick={arrowDownUp}>
+          <div className="cursor-pointer">
             {logOutBtn === "false" ? <ArrowUp /> : <ArrowDown />}
           </div>
           <div
             className={logout}
             onClick={() => {
               localStorage.removeItem("access");
-              setUser(false)
+              setUser(false);
               navigate("/");
             }}
           >

@@ -15,7 +15,17 @@ export const TaskSquare = (props) => (
     />
   </svg>
 );
-
+export const RedCircle = (props) => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width={22}
+    height={23}
+    fill="none"
+    {...props}
+  >
+    <circle cx={11} cy={11.435} r={11} fill="red" />
+  </svg>
+);
 export const DocumentText = (props) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
