@@ -224,7 +224,7 @@ const Ticket = (circle) => {
                     className="detailsStatus"
                   >
                     {circleColor}
-                    <span className="menaxtaran">{circle.state.name}</span>
+                    <span>{circle.state.name}</span>
                     {taskStatusDrop === "false" ? <ArrowDown /> : <ArrowUp />}
 
                     <div className={taskStatusDrop}>
