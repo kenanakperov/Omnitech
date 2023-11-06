@@ -3,7 +3,7 @@ import { ArrowDown, ArrowUp, Chime, LogOutI, MoonI } from "../svg";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const TopBar = ({setUser}) => {
+const TopBar = ({ setUser }) => {
   const navigate = useNavigate();
   const [hideDrop, setHideDrop] = useState("false");
   const [logOutBtn, setLogOutBtn] = useState("true");
@@ -39,11 +39,9 @@ const TopBar = ({setUser}) => {
         <div className="moonIcon">
           <MoonI />
         </div>
-        <div className="languageChanger">
+        <div onClick={langBtnChange} className="languageChanger">
           <span>{lang}</span>
-          <div onClick={langBtnChange}>
-            {langBtn === "false" ? <ArrowDown /> : <ArrowUp />}
-          </div>
+          <div>{langBtn === "false" ? <ArrowDown /> : <ArrowUp />}</div>
           <p className={hideDrop} onClick={langFunc}>
             <span>{lang === "AZ" ? "RU" : "AZ"}</span>
           </p>

@@ -69,6 +69,7 @@ const Home = ({ setUser }) => {
   useEffect(() => {
     axios("http://165.22.81.197:8000/api/tickets/").then((res) => {
       setData(res.data);
+      console.log(res.data)
     });
     axios("http://165.22.81.197:8000/api/categories/").then((res) => {
       setDataCategories(res.data);
@@ -154,18 +155,19 @@ const Home = ({ setUser }) => {
                   return null;
                 }
               })
-              .map((item) => {
+              .map((item,index) => {
                 return (
                   <Ticket
                     key={item.id}
                     id={item.id}
-                    circle={item.state.name}
                     ticketNum={"Tiket# " + item.id}
                     content={item.title}
                     comment={item.description}
-                    state={item.state}
                     setStateRefresh={setRefresh}
                     stateRefresh={refresh}
+                    state={item.current_stage}
+                    createdBy={item.created_by.username}
+                    // circle={item.current_stage.name}
                     // date="Yaradıldı: 01/09/23 - 12:55"
                     // name={item.owner.first_name + " " + item.owner.last_name}
                     // companyName="Mothercare"
@@ -174,7 +176,8 @@ const Home = ({ setUser }) => {
                     voen="0000000"
                   />
                 );
-              })}
+              })
+            }
           </div>
         </div>
         <div className={newTicketHide}>

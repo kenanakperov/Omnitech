@@ -26,6 +26,9 @@
     a {
       li {
         padding: 16px 32px;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
         cursor: pointer;
         display: flex;
         align-items: center;

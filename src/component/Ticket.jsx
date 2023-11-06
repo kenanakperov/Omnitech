@@ -49,7 +49,7 @@ const Ticket = (circle) => {
   const [toMe, setToMe] = useState("Mənə təyin et");
   const [taskStatusDrop, setTaskStatusDrop] = useState("false");
   const [histories, setHistories] = useState([]);
-  // const [comments, setComments] = useState([]);
+  const [comments, setComments] = useState([]);
   const [refresh, setRefresh] = useState(true);
 
   let [ticketData, setTicketData] = useState({
@@ -64,11 +64,11 @@ const Ticket = (circle) => {
       });
   };
   const getComments = () => {
-    // axios
-    //   .get(`http://165.22.81.197:8000/api/comments/${circle.id}`)
-    //   .then((res) => {
-    //     setComments(res.data);
-    //   });
+    axios
+      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/comments/`)
+      .then((res) => {
+        setComments(res.data);
+      });
   };
   useEffect(() => {
     getHistories();
@@ -162,6 +162,12 @@ const Ticket = (circle) => {
   if (circle.state.id === 3) {
     circleColor = <BlueCircle />;
   }
+  if (circle.state.id === 4) {
+    circleColor = <BlueCircle />;
+  }
+  if (circle.state.id === 5) {
+    circleColor = <BlueCircle />;
+  }
   if (circle.state.id === 2) {
     circleColor = <GreenCircle />;
   }
@@ -186,7 +192,7 @@ const Ticket = (circle) => {
         </div>
         <div className="ticketContent">
           <div className="ticketContentTitle">
-            <span>{circle.name}</span>
+            {/* <span>{circle.name}</span> */}
             <span>{circle.companyName}</span>
             <span>{circle.phoneNum}</span>
           </div>
@@ -201,7 +207,7 @@ const Ticket = (circle) => {
                 src={require("../images/Avatar.png")}
                 alt=""
               />
-              <span>Diana</span>
+              <span>{circle.createdBy}</span>
               <RightArrow />
               <h3>Satış</h3>
             </div>
@@ -224,7 +230,7 @@ const Ticket = (circle) => {
                     className="detailsStatus"
                   >
                     {circleColor}
-                    <span>{circle.state.name}</span>
+                    <span>{circle.state.label}</span>
                     {taskStatusDrop === "false" ? <ArrowDown /> : <ArrowUp />}
 
                     <div className={taskStatusDrop}>
@@ -235,10 +241,10 @@ const Ticket = (circle) => {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Seçin</SelectLabel>
-                            <SelectItem value="0">Unassigned</SelectItem>
-                            <SelectItem value="1">Assigned</SelectItem>
-                            <SelectItem value="2">In Progress</SelectItem>
-                            <SelectItem value="3">Done</SelectItem>
+                            <SelectItem value="5">Unassigned</SelectItem>
+                            <SelectItem value="6">Assigned</SelectItem>
+                            <SelectItem value="7">In Progress</SelectItem>
+                            <SelectItem value="8">Done</SelectItem>
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -286,15 +292,16 @@ const Ticket = (circle) => {
                   </div>
                   <div className={historyCommentChanger}>
                     <div className="ticketsOverflow">
-                      {/* {comments.map((item, index) => {
+                      {comments.map((item) => {
                         return (
                           <Comment
                             key={item.id}
-                            name={item.author.username}
+                            name="Kenan"
+                            // name={item.author.username}
                             text={item.text}
                           />
                         );
-                      })} */}
+                      })}
                     </div>
                     <div className="detailsContentAddComment">
                       <Label>Şərh əlavə et</Label>

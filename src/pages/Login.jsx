@@ -6,7 +6,7 @@ import { Label } from "../components/ui/label";
 import { useState } from "react";
 import axios from "axios";
 
-const Login = ({ setUser,id }) => {
+const Login = ({ setUser, id }) => {
   const navigate = useNavigate();
   const [errormessage, setErrormessage] = useState("");
 
