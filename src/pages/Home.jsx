@@ -35,10 +35,12 @@ const Home = ({ setUser }) => {
     // kassaId: "",
     // company: "",
     description: "",
-    // startNum: "",
-    // num: "",
+    num: "",
+    startNum: "",
     category: "",
   });
+
+  const token = localStorage.getItem("access");
   const ref = useRef(null);
   const ref1 = useRef(null);
   const ref2 = useRef(null);
@@ -66,15 +68,25 @@ const Home = ({ setUser }) => {
       };
     });
   };
+  const [phone, setPhone] = useState("");
+  const phoneHandleChange = () => {};
   useEffect(() => {
-    axios("http://165.22.81.197:8000/api/tickets/").then((res) => {
+    axios("http://165.22.81.197:8000/api/tickets/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
       setData(res.data);
-      console.log(res.data)
+      console.log(res.data);
     });
-    axios("http://165.22.81.197:8000/api/categories/").then((res) => {
+    axios("http://165.22.81.197:8000/api/categories/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
       setDataCategories(res.data);
     });
-  }, [refresh]);
+  }, [refresh, token]);
   const newTicketButton = () => {
     if (hideClass === "false") {
       setHideClass("ticketFilter");
@@ -125,8 +137,10 @@ const Home = ({ setUser }) => {
               className="w-[400px]"
             >
               <TabsList>
-                <TabsTrigger value="satis">Satış qrupun tiketləri</TabsTrigger>
-                <TabsTrigger value="mine">Yalnız mənim tiketlər</TabsTrigger>
+                <TabsTrigger value="satis">
+                  Satış qrupunun ticketləri
+                </TabsTrigger>
+                <TabsTrigger value="mine">Yalnız mənim ticketlərim</TabsTrigger>
               </TabsList>
             </Tabs>
           </div>
@@ -155,7 +169,7 @@ const Home = ({ setUser }) => {
                   return null;
                 }
               })
-              .map((item,index) => {
+              .map((item, index) => {
                 return (
                   <Ticket
                     key={item.id}
@@ -167,17 +181,19 @@ const Home = ({ setUser }) => {
                     stateRefresh={refresh}
                     state={item.current_stage}
                     createdBy={item.created_by.username}
+                    assigned={
+                      item.assignee ? item.assignee.username : "Not assigned"
+                    }
                     // circle={item.current_stage.name}
                     // date="Yaradıldı: 01/09/23 - 12:55"
                     // name={item.owner.first_name + " " + item.owner.last_name}
                     // companyName="Mothercare"
-                    // phoneNum="+994-XX-XXX-XX-XX"
+                    phoneNum={item.phone_number}
                     kassaID="0000000"
                     voen="0000000"
                   />
                 );
-              })
-            }
+              })}
           </div>
         </div>
         <div className={newTicketHide}>
@@ -329,12 +345,15 @@ const Home = ({ setUser }) => {
               axios
                 .post(
                   "http://165.22.81.197:8000/api/tickets/",
-                  ticketData
-                  // {
-                  //   headers: {
-                  //     Authorization: Bearer ${token},
-                  //   },
-                  // }
+                  {
+                    ...ticketData,
+                    phone_number: ticketData.startNum + ticketData.num,
+                  },
+                  {
+                    headers: {
+                      Authorization: `Bearer ${token}`,
+                    },
+                  }
                 )
                 .then((res) => {
                   setRefresh(!refresh);

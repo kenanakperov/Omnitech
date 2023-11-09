@@ -51,28 +51,64 @@ const Ticket = (circle) => {
   const [histories, setHistories] = useState([]);
   const [comments, setComments] = useState([]);
   const [refresh, setRefresh] = useState(true);
+  const token = localStorage.getItem("access");
+  const [avialableStages, setAvialableStages] = useState();
+  const [avialableUsersToAssign, setAvialableUsersToAssign] = useState();
 
   let [ticketData, setTicketData] = useState({
-    ticket: circle.id,
     text: "",
   });
   const getHistories = () => {
     axios
-      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/history/`)
+      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/history/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setHistories(res.data);
       });
   };
   const getComments = () => {
     axios
-      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/comments/`)
+      .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/comments/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
         setComments(res.data);
       });
   };
+  const getAvialableStages = () => {
+    axios(
+      `http://165.22.81.197:8000/api/tickets/${circle.id}/available_stages/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((res) => {
+      setAvialableStages(res.data);
+    });
+  };
+  const getAvialableUsersToAssign = () => {
+    axios(
+      `http://165.22.81.197:8000/api/tickets/${circle.id}/available_users_to_assign/`,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    ).then((res) => {
+      setAvialableUsersToAssign(res.data);
+    });
+  };
   useEffect(() => {
     getHistories();
     getComments();
+    getAvialableStages();
+    getAvialableUsersToAssign();
   }, [circle.id]);
 
   useEffect(() => {
@@ -82,6 +118,18 @@ const Ticket = (circle) => {
   useEffect(() => {
     setHistories(histories);
   }, [histories]);
+
+  const handleUserToAssign = (id) => {
+    axios.post(
+      `http://165.22.81.197:8000/api/tickets/${circle.id}/assign/user/${id}/`,
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
 
   const handlechange = (e) => {
     let value = e.target.value;
@@ -117,9 +165,14 @@ const Ticket = (circle) => {
       state: value,
     };
     axios
-      .patch(
-        `http://165.22.81.197:8000/api/tickets/${circle.id}/change_state/`,
-        changeState
+      .post(
+        `http://165.22.81.197:8000/api/tickets/${circle.id}/change/stage/${avialableStages[0].id}/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       )
       .then(() => {
         circle.setStateRefresh(!circle.stateRefresh);
@@ -150,7 +203,15 @@ const Ticket = (circle) => {
   const setBtn = () => {
     if (ticketData.text.length !== 0) {
       axios
-        .post("http://165.22.81.197:8000/api/comments/", ticketData)
+        .post(
+          `http://165.22.81.197:8000/api/tickets/${circle.id}/comments/create/`,
+          ticketData,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          }
+        )
         .then((res) => {
           setRefresh(!refresh);
           console.log(res);
@@ -159,22 +220,16 @@ const Ticket = (circle) => {
     // setHideDetails("false");
   };
   let circleColor;
-  if (circle.state.id === 3) {
+  if (circle.state.label === "Done") {
     circleColor = <BlueCircle />;
   }
-  if (circle.state.id === 4) {
-    circleColor = <BlueCircle />;
-  }
-  if (circle.state.id === 5) {
-    circleColor = <BlueCircle />;
-  }
-  if (circle.state.id === 2) {
+  if (circle.state.label === "In progress") {
     circleColor = <GreenCircle />;
   }
-  if (circle.state.id === 1) {
+  if (circle.state.label === "Assigned") {
     circleColor = <YellowCircle />;
   }
-  if (circle.state.id === 0) {
+  if (circle.state.label === "Unassigned") {
     circleColor = <RedCircle />;
   }
   return (
@@ -209,7 +264,7 @@ const Ticket = (circle) => {
               />
               <span>{circle.createdBy}</span>
               <RightArrow />
-              <h3>Satış</h3>
+              <h3>{circle.assigned}</h3>
             </div>
             <h5 onClick={details}>Ətraflı bax</h5>
           </div>
@@ -241,10 +296,13 @@ const Ticket = (circle) => {
                         <SelectContent>
                           <SelectGroup>
                             <SelectLabel>Seçin</SelectLabel>
-                            <SelectItem value="5">Unassigned</SelectItem>
-                            <SelectItem value="6">Assigned</SelectItem>
-                            <SelectItem value="7">In Progress</SelectItem>
-                            <SelectItem value="8">Done</SelectItem>
+
+                            {avialableStages &&
+                              avialableStages.map((item) => (
+                                <SelectItem key={item.id} value={item.id}>
+                                  {item.label}
+                                </SelectItem>
+                              ))}
                           </SelectGroup>
                         </SelectContent>
                       </Select>
@@ -296,8 +354,8 @@ const Ticket = (circle) => {
                         return (
                           <Comment
                             key={item.id}
-                            name="Kenan"
-                            // name={item.author.username}
+                            // name="Kenan"
+                            name={item.author.username}
                             text={item.text}
                           />
                         );
@@ -338,29 +396,33 @@ const Ticket = (circle) => {
                   <RightArrow />
                   <Tabs defaultValue="account" className="ml-4 mr-4">
                     <TabsList>
-                      <TabsTrigger value="account">Satış</TabsTrigger>
+                      <TabsTrigger value="account">
+                        {circle.assigned}
+                      </TabsTrigger>
                     </TabsList>
                   </Tabs>{" "}
                   <img src={require("../images/Avatarmen.png")} alt="" />
                   <h4>{toMe}</h4>
-                  <span>{selectValue}</span>
                   <div>
                     <h5 className={arrowhide} onClick={inputHide}>
                       <RightArrow />
                     </h5>
                   </div>
                   <div className={rightArrow}>
-                    <Select onValueChange={(e) => handleChange(e)}>
+                    <Select onValueChange={(e) => handleUserToAssign(e)}>
                       <SelectTrigger className="w-[241px]">
                         <SelectValue placeholder="Yönləndirin" />
                       </SelectTrigger>
                       <SelectContent>
                         <SelectGroup>
                           <SelectLabel>Yönləndirin</SelectLabel>
-                          <SelectItem value="texniki">Texniki</SelectItem>
-                          <SelectItem value="yığım">Yığım</SelectItem>
-                          <SelectItem value="satış">Satış</SelectItem>
-                          <SelectItem value="IT">IT</SelectItem>
+
+                          {avialableUsersToAssign &&
+                            avialableUsersToAssign.map((user) => (
+                              <SelectItem value={user.id} key={user.id}>
+                                {user.username}
+                              </SelectItem>
+                            ))}
                         </SelectGroup>
                       </SelectContent>
                     </Select>
