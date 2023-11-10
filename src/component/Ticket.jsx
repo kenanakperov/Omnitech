@@ -38,6 +38,8 @@ import axios from "axios";
 
 const Ticket = (circle) => {
   const [hideDetails, setHideDetails] = useState("false");
+  const [dataCategories, setDataCategories] = useState([]);
+  const [salaam, setsalaam] = useState("");
   const [activeFirst, setActiveFirst] = useState("active");
   const [activeSecond, setActiveSecond] = useState("nonactive");
   const [historyCommentChanger, setHistoryCommentChanger] = useState("");
@@ -51,13 +53,22 @@ const Ticket = (circle) => {
   const [histories, setHistories] = useState([]);
   const [comments, setComments] = useState([]);
   const [refresh, setRefresh] = useState(true);
-  const token = localStorage.getItem("access");
   const [avialableStages, setAvialableStages] = useState();
   const [avialableUsersToAssign, setAvialableUsersToAssign] = useState();
+  const [ticketCategoryChanger, setTicketCategoryChanger] = useState("false");
+
+  const token = localStorage.getItem("access");
 
   let [ticketData, setTicketData] = useState({
     text: "",
   });
+
+  const categoryChangeFunc = () => {
+    ticketCategoryChanger === "false"
+      ? setTicketCategoryChanger("true")
+      : setTicketCategoryChanger("false");
+  };
+
   const getHistories = () => {
     axios
       .get(`http://165.22.81.197:8000/api/tickets/${circle.id}/history/`, {
@@ -109,6 +120,13 @@ const Ticket = (circle) => {
     getComments();
     getAvialableStages();
     getAvialableUsersToAssign();
+    axios("http://165.22.81.197:8000/api/categories/", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    }).then((res) => {
+      setDataCategories(res.data);
+    });
   }, [circle.id]);
 
   useEffect(() => {
@@ -120,15 +138,50 @@ const Ticket = (circle) => {
   }, [histories]);
 
   const handleUserToAssign = (id) => {
-    axios.post(
-      `http://165.22.81.197:8000/api/tickets/${circle.id}/assign/user/${id}/`,
-      {},
-      {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+    axios
+      .post(
+        `http://165.22.81.197:8000/api/tickets/${circle.id}/assign/user/${id}/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then(() => {
+        if (circle.state.label === "Unassigned") {
+          axios
+            .post(
+              `http://165.22.81.197:8000/api/tickets/${circle.id}/change/stage/${avialableStages[0].id}/`,
+              {},
+              {
+                headers: {
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              circle.setStateRefresh(!circle.stateRefresh);
+            });
+        }
+      });
+  };
+
+  const handleChangeCategory = (e) => {
+    axios
+      .post(
+        `http://165.22.81.197:8000/api/tickets/${circle.id}/change/category/${e}/`,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        setTicketCategoryChanger("false");
+        circle.setStateRefresh(!circle.stateRefresh);
+      });
   };
 
   const handlechange = (e) => {
@@ -179,6 +232,18 @@ const Ticket = (circle) => {
       });
   };
 
+  const handleDelete = () => {
+    axios
+      .delete(`http://165.22.81.197:8000/api/tickets/${circle.id}/`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .then((res) => {
+        circle.setStateRefresh(!circle.stateRefresh);
+      });
+  };
+
   const activeNonActive = () => {
     if (activeFirst === "active") {
       setActiveFirst("nonactive");
@@ -214,7 +279,6 @@ const Ticket = (circle) => {
         )
         .then((res) => {
           setRefresh(!refresh);
-          console.log(res);
         });
     }
     // setHideDetails("false");
@@ -266,7 +330,10 @@ const Ticket = (circle) => {
               <RightArrow />
               <h3>{circle.assigned}</h3>
             </div>
-            <h5 onClick={details}>Ətraflı bax</h5>
+            <div>
+              <h5 onClick={details}>Ətraflı bax</h5>
+              <button onClick={() => handleDelete()}>Delete</button>
+            </div>
           </div>
         </div>
       </div>
@@ -333,8 +400,36 @@ const Ticket = (circle) => {
                     <span>Kassa nömrəsi: {circle.kassaID}</span>
                     <hr />
                     <span>VÖEN: {circle.voen}</span>
+                    <hr />
+                    <button onClick={categoryChangeFunc}>
+                      Change category
+                    </button>
                   </div>
                   <hr />
+                  <div className={ticketCategoryChanger}>
+                    <Select
+                      onValueChange={(e) => {
+                        handleChangeCategory(e)
+                      }}
+                    >
+                      <SelectTrigger className="w-[241px]">
+                        <SelectValue placeholder="Kategoriyanı seçin" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        <SelectGroup>
+                          <SelectLabel>Kategoriyanı seçin</SelectLabel>
+
+                          {dataCategories.map((item) => {
+                            return (
+                              <SelectItem key={item.id} value={item.id}>
+                                {item.name}
+                              </SelectItem>
+                            );
+                          })}
+                        </SelectGroup>
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
                 <div className="detailsContentHR">
                   <hr />
@@ -418,11 +513,13 @@ const Ticket = (circle) => {
                           <SelectLabel>Yönləndirin</SelectLabel>
 
                           {avialableUsersToAssign &&
-                            avialableUsersToAssign.map((user) => (
-                              <SelectItem value={user.id} key={user.id}>
-                                {user.username}
-                              </SelectItem>
-                            ))}
+                            avialableUsersToAssign.map((user) => {
+                              return (
+                                <SelectItem value={user.id} key={user.id}>
+                                  {user.username}
+                                </SelectItem>
+                              );
+                            })}
                         </SelectGroup>
                       </SelectContent>
                     </Select>

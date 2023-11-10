@@ -77,7 +77,6 @@ const Home = ({ setUser }) => {
       },
     }).then((res) => {
       setData(res.data);
-      console.log(res.data);
     });
     axios("http://165.22.81.197:8000/api/categories/", {
       headers: {
@@ -317,7 +316,7 @@ const Home = ({ setUser }) => {
                 <SelectGroup>
                   {dataCategories.map((item, index) => {
                     return (
-                      <SelectItem key={item.id} value={item.id + 1}>
+                      <SelectItem key={item.id} value={item.id}>
                         {item.name}
                       </SelectItem>
                     );
